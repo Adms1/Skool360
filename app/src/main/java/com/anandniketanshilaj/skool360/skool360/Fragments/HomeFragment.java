@@ -332,6 +332,7 @@ public class HomeFragment extends Fragment {
                             teacher_name1_txt.setText(studDetailList.get(0).getTeacherName());
                             admission_txt.setText("Admission No :" + " " + studDetailList.get(0).getGRNO());
                             if (studDetailList.get(0).getTodayAttendance().equalsIgnoreCase("")) {
+
                                 attendance_txt.setText("Attendance :" + " " + "N/A Today");
                             } else {
                                 attendance_txt.setText("Attendance :" + " " + studDetailList.get(0).getTodayAttendance());
