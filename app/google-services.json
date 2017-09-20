@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "767333272689",
+    "firebase_url": "https://skool-360-shilaj-7f579.firebaseio.com",
+    "project_id": "skool-360-shilaj-7f579",
+    "storage_bucket": "skool-360-shilaj-7f579.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767333272689:android:5a632d4c121e4a9a",
+        "android_client_info": {
+          "package_name": "com.anandniketanshilaj.skool360"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767333272689-mcbv43qcfc4a7rebpidbg3k2ftan9b90.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDq28QZI1i_IVu1CYRgNLyIMFXPIy3ihg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
