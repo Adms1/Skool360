@@ -2,18 +2,19 @@ package com.anandniketanshilaj.skool360.skool360.Adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import com.anandniketan.skool360teacher.AsyncTasks.PTMTeacherStudentInsertDetailAsyncTask;
-import com.anandniketan.skool360teacher.Interfacess.onInboxRead;
-import com.anandniketan.skool360teacher.Models.MainPtmSentMessageResponse;
-import com.anandniketan.skool360teacher.Models.PTMInboxResponse.FinalArrayInbox;
-import com.anandniketan.skool360teacher.R;
-import com.anandniketan.skool360teacher.Utility.Utility;
+import com.anandniketanshilaj.skool360.R;
+import com.anandniketanshilaj.skool360.skool360.AsyncTasks.PTMTeacherStudentInsertDetailAsyncTask;
+import com.anandniketanshilaj.skool360.skool360.Interfacess.onInboxRead;
+import com.anandniketanshilaj.skool360.skool360.Models.MainPtmSentMessageResponse;
+import com.anandniketanshilaj.skool360.skool360.Models.PTMInboxResponse.FinalArrayInbox;
+import com.anandniketanshilaj.skool360.skool360.Utility.Utility;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,6 +43,9 @@ public class ExpandableListAdapterInbox extends BaseExpandableListAdapter {
         this._listDataHeader = listDataHeader;
         this.listChildData = listChildData;
         this.onInboxRead = onInboxRead;
+    }
+
+    public ExpandableListAdapterInbox(FragmentActivity activity, List<String> listDataHeader, HashMap<String, List<FinalArrayInbox>> listDataChild, onInboxRead onInboxRead) {
     }
 
     @Override

@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.anandniketanshilaj.skool360.skool360.Fragments.AnnouncementFragment;
-import com.anandniketanshilaj.skool360.skool360.Fragments.InboxFragment;
 import com.anandniketanshilaj.skool360.skool360.Fragments.SentFragment;
 
 /**

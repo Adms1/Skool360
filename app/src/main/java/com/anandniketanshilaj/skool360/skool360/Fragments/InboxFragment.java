@@ -2,6 +2,7 @@ package com.anandniketanshilaj.skool360.skool360.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,9 +13,12 @@ import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import com.anandniketanshilaj.skool360.R;
 import com.anandniketanshilaj.skool360.skool360.Adapter.ExpandableListAdapterInbox;
+import com.anandniketanshilaj.skool360.skool360.AsyncTasks.PTMTeacherStudentGetDetailAsyncTask;
+import com.anandniketanshilaj.skool360.skool360.Interfacess.onInboxRead;
+import com.anandniketanshilaj.skool360.skool360.Models.PTMInboxResponse.FinalArrayInbox;
+import com.anandniketanshilaj.skool360.skool360.Models.PTMInboxResponse.MainPtmInboxResponse;
 import com.anandniketanshilaj.skool360.skool360.Utility.Utility;
 
 import java.util.ArrayList;
@@ -44,7 +48,7 @@ public class InboxFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.frag, container, false);
+        rootView = inflater.inflate(R.layout.fragment_inbox, container, false);
         mContext = getActivity();
 
         initViews();

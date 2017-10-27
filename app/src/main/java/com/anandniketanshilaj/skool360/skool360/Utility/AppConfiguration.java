@@ -53,6 +53,7 @@ public class AppConfiguration {
     public static String GetFeesStatus = "GetFeesStatus";
     public static String GetPaymentLedger = "PaymentLedger";
     public static String GetPrincipalMessage = "GetPrincipalMessage";
-
+    public static String PTMTeacherStudentGetDetail = "PTMTeacherStudentGetDetail";
+    public static String PTMTeacherStudentInsertDetail = "PTMTeacherStudentInsertDetail";
 
 }
