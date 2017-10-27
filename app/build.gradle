@@ -36,7 +36,7 @@ dependencies {
     compile 'com.roomorama:caldroid:3.0.1'
     compile 'com.google.firebase:firebase-messaging:9.6.0'
     compile 'com.android.support:support-v4:23.4.0'
-    testCompile 'junit:junit:4.12'
     compile 'com.intuit.sdp:sdp-android:1.0.4'
+    testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'
