@@ -12,15 +12,16 @@ import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.anandniketan.skool360teacher.Adapter.ExpandableListAdapterSent;
-import com.anandniketan.skool360teacher.AsyncTasks.PTMDeleteMeetingAsyncTask;
-import com.anandniketan.skool360teacher.AsyncTasks.PTMTeacherStudentGetDetailAsyncTask;
-import com.anandniketan.skool360teacher.Interfacess.onDeleteButton;
-import com.anandniketan.skool360teacher.Models.MainPtmSentDeleteResponse;
-import com.anandniketan.skool360teacher.Models.PTMInboxResponse.FinalArrayInbox;
-import com.anandniketan.skool360teacher.Models.PTMInboxResponse.MainPtmInboxResponse;
-import com.anandniketan.skool360teacher.R;
-import com.anandniketan.skool360teacher.Utility.Utility;
+
+import com.anandniketanshilaj.skool360.R;
+import com.anandniketanshilaj.skool360.skool360.Adapter.ExpandableListAdapterSent;
+import com.anandniketanshilaj.skool360.skool360.AsyncTasks.PTMDeleteMeetingAsyncTask;
+import com.anandniketanshilaj.skool360.skool360.AsyncTasks.PTMTeacherStudentGetDetailAsyncTask;
+import com.anandniketanshilaj.skool360.skool360.Interfacess.onDeleteButton;
+import com.anandniketanshilaj.skool360.skool360.Models.MainPtmSentDeleteResponse;
+import com.anandniketanshilaj.skool360.skool360.Models.PTMInboxResponse.FinalArrayInbox;
+import com.anandniketanshilaj.skool360.skool360.Models.PTMInboxResponse.MainPtmInboxResponse;
+import com.anandniketanshilaj.skool360.skool360.Utility.Utility;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -102,8 +103,8 @@ public class SentFragment extends Fragment {
                 public void run() {
                     try {
                         HashMap<String, String> params = new HashMap<String, String>();
-                        params.put("UserID", Utility.getPref(mContext, "StaffID"));
-                        params.put("UserType", "staff");
+                        params.put("UserID", Utility.getPref(mContext, "studid"));
+                        params.put("UserType", "student");
                         params.put("MessgaeType", "Sent");
                         ptmTeacherStudentGetDetailAsyncTask = new PTMTeacherStudentGetDetailAsyncTask(params);
                         response = ptmTeacherStudentGetDetailAsyncTask.execute().get();
@@ -111,9 +112,9 @@ public class SentFragment extends Fragment {
                             @Override
                             public void run() {
                                 progressDialog.dismiss();
-                                if (response.getFinalArray().size() > 0) {
+                                if (response.getFinalArray().size() >=0) {
                                     txtNoRecordsSent.setVisibility(View.GONE);
-                                    Sent_header.setVisibility(View.VISIBLE);
+//                                    Sent_header.setVisibility(View.VISIBLE);
                                     setExpandableListData();
                                     expandableListAdapterSent = new ExpandableListAdapterSent(getActivity(), listDataHeader, listDataChild, new onDeleteButton() {
                                         @Override
@@ -147,8 +148,8 @@ public class SentFragment extends Fragment {
                                                                     progressDialog.dismiss();
                                                                     if (responsedelete.getFinalArray().size() >= 0) {
                                                                         Utility.ping(mContext, "Delete Message.");
-                                                                        expandableListAdapterSent.notifyDataSetChanged();
-                                                                        getSentData();
+
+//                                                                        getSentData();
                                                                     } else {
                                                                         progressDialog.dismiss();
                                                                     }
@@ -166,10 +167,11 @@ public class SentFragment extends Fragment {
                                     });
                                     lvExpSent.setAdapter(expandableListAdapterSent);
                                     lvExpSent.deferNotifyDataSetChanged();
+                                    expandableListAdapterSent.notifyDataSetChanged();
                                 } else {
                                     progressDialog.dismiss();
                                     txtNoRecordsSent.setVisibility(View.VISIBLE);
-                                    Sent_header.setVisibility(View.GONE);
+//                                    Sent_header.setVisibility(View.GONE);
                                 }
                             }
                         });
@@ -195,6 +197,14 @@ public class SentFragment extends Fragment {
             ArrayList<FinalArrayInbox> rows = new ArrayList<FinalArrayInbox>();
             rows.add(response.getFinalArray().get(j));
             listDataChild.put(listDataHeader.get(j), rows);
+        }
+        if(listDataChild.size()>0)
+        {
+            Sent_header.setVisibility(View.VISIBLE);
+            txtNoRecordsSent.setVisibility(View.GONE);
+        }else{
+            Sent_header.setVisibility(View.GONE);
+            txtNoRecordsSent.setVisibility(View.VISIBLE);
         }
     }
 }

@@ -2,17 +2,15 @@ package com.anandniketanshilaj.skool360.skool360.Adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.anandniketanshilaj.skool360.R;
-import com.anandniketanshilaj.skool360.skool360.AsyncTasks.PTMTeacherStudentInsertDetailAsyncTask;
-import com.anandniketanshilaj.skool360.skool360.Interfacess.onInboxRead;
-import com.anandniketanshilaj.skool360.skool360.Models.MainPtmSentMessageResponse;
+import com.anandniketanshilaj.skool360.skool360.Interfacess.onDeleteButton;
 import com.anandniketanshilaj.skool360.skool360.Models.PTMInboxResponse.FinalArrayInbox;
 
 import java.util.ArrayList;
@@ -20,28 +18,24 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by admsandroid on 10/25/2017.
+ * Created by admsandroid on 10/30/2017.
  */
 
-public class ExpandableListAdapterInbox extends BaseExpandableListAdapter {
+public class ExpandableListAdapterSent extends BaseExpandableListAdapter {
 
     private Context _context;
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<String, List<FinalArrayInbox>> listChildData;
-    private onInboxRead readlistner;
-    String messageId, FromId, Toid, messageDate, messageSubject, messageMessageLine;
-    private PTMTeacherStudentInsertDetailAsyncTask getPTMTeacherStudentInsertDetailAsyncTask = null;
-    MainPtmSentMessageResponse mainPtmSentMessageResponse;
-    private ArrayList<String> staffattendaceModel = new ArrayList<>();
-    TextView txtSubject;
+    private ArrayList<String> dataCheck = new ArrayList<String>();
+    private onDeleteButton listner;
 
-    public ExpandableListAdapterInbox(Context context, List<String> listDataHeader,
-                                      HashMap<String, List<FinalArrayInbox>> listChildData, onInboxRead readlistner) {
+    public ExpandableListAdapterSent(Context context, List<String> listDataHeader,
+                                     HashMap<String, List<FinalArrayInbox>> listChildData, onDeleteButton listner) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this.listChildData = listChildData;
-        this.readlistner = readlistner;
+        this.listner=listner;
         notifyDataSetChanged();
     }
 
@@ -59,40 +53,35 @@ public class ExpandableListAdapterInbox extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        List<FinalArrayInbox> childData = getChild(groupPosition, 0);
+        final List<FinalArrayInbox> childData = getChild(groupPosition, 0);
 
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.list_item_inbox, null);
+            convertView = infalInflater.inflate(R.layout.list_item_sent, null);
         }
 
 
+        TextView txtSubject;
+        final Button delete_btn;
         txtSubject = (TextView) convertView.findViewById(R.id.txtSubject);
-
-        messageId = childData.get(childPosition).getMessageID();
-        FromId = childData.get(childPosition).getFromID();
-        Toid = childData.get(childPosition).getToID();
-        messageDate = childData.get(childPosition).getMeetingDate();
-        messageSubject = childData.get(childPosition).getSubjectLine();
-        messageMessageLine = childData.get(childPosition).getDescription();
+        delete_btn = (Button) convertView.findViewById(R.id.delete_btn);
 
         if (childData.get(childPosition).getReadStatus().equalsIgnoreCase("Pending")) {
             txtSubject.setTypeface(null, Typeface.BOLD);
-            staffattendaceModel.add(messageId+"|"+FromId+"|"+Toid+"|"+messageDate+"|"+messageSubject+"|"+messageMessageLine);
-            Log.d("stringArray", staffattendaceModel.toString());
-            readlistner.readMessageStatus();
-
-        } else
-
-        {
+        } else {
             txtSubject.setTypeface(null, Typeface.NORMAL);
         }
+        txtSubject.setText(childData.get(childPosition).getDescription());
+        delete_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        txtSubject.setText(childData.get(childPosition).
-
-                getDescription());
+                dataCheck.add(childData.get(childPosition).getMessageID());
+                listner.deleteSentMessage();
+            }
+        });
         return convertView;
     }
 
@@ -145,8 +134,6 @@ public class ExpandableListAdapterInbox extends BaseExpandableListAdapter {
         } else {
             view_inbox_txt.setTextColor(_context.getResources().getColor(R.color.absent_header));
         }
-
-
         return convertView;
     }
 
@@ -160,10 +147,10 @@ public class ExpandableListAdapterInbox extends BaseExpandableListAdapter {
         return true;
     }
 
-    public ArrayList<String> getData() {
-        return staffattendaceModel;
+    public ArrayList<String> getMessageId() {
+        return dataCheck;
     }
-
 }
+
 
 

@@ -1,7 +1,6 @@
 package com.anandniketanshilaj.skool360.skool360.Fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,24 +15,27 @@ import com.anandniketanshilaj.skool360.R;
 import com.anandniketanshilaj.skool360.skool360.Activities.DashBoardActivity;
 import com.anandniketanshilaj.skool360.skool360.Adapter.PTMPageAdapter;
 
+/**
+ * Created by admsandroid on 10/30/2017.
+ */
 
-public class MainAnnouncementFragment extends Fragment {
+public class PTMMainFragment extends Fragment {
     private View rootView;
     private Button btnMenu, btnBackPtm_main;
 
-    private TabLayout tabLayout_ptm_main;
+    private TabLayout tablayout_ptm_main;
     private ViewPager viewPager;
     private Context mContext;
     PTMPageAdapter adapter;
 
-    public MainAnnouncementFragment() {
+    public PTMMainFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_main_announcement, container, false);
+        rootView = inflater.inflate(R.layout.fragment_ptmmain, container, false);
         mContext = getActivity();
         init();
         setListner();
@@ -45,22 +47,21 @@ public class MainAnnouncementFragment extends Fragment {
 //Initializing the tablayout
 
         btnMenu = (Button) rootView.findViewById(R.id.btnMenu);
-        btnBackPtm_main= (Button) rootView.findViewById(R.id.btnBackPtm_main);
+        btnBackPtm_main= (Button) rootView.findViewById(R.id.btnBackPtm);
         viewPager = (ViewPager) rootView.findViewById(R.id.pager);
 
 
-        tabLayout_ptm_main = (TabLayout) rootView.findViewById(R.id.tabLayout_ptm_main);
-        tabLayout_ptm_main.addTab(tabLayout_ptm_main.newTab().setText("Inbox"),true);
-        tabLayout_ptm_main.addTab(tabLayout_ptm_main.newTab().setText("Sent"));
-        tabLayout_ptm_main.addTab(tabLayout_ptm_main.newTab().setText("Create"));
-        tabLayout_ptm_main.setTabMode(TabLayout.MODE_FIXED);
-        tabLayout_ptm_main.setTabGravity(TabLayout.GRAVITY_FILL);
+        tablayout_ptm_main = (TabLayout) rootView.findViewById(R.id.tablayout_ptm_main);
+        tablayout_ptm_main.addTab(tablayout_ptm_main.newTab().setText("Inbox"),true);
+        tablayout_ptm_main.addTab(tablayout_ptm_main.newTab().setText("Sent"));
+        tablayout_ptm_main.addTab(tablayout_ptm_main.newTab().setText("Create"));
+        tablayout_ptm_main.setTabMode(TabLayout.MODE_FIXED);
+        tablayout_ptm_main.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
-        adapter = new PTMPageAdapter(getFragmentManager(), tabLayout_ptm_main.getTabCount());
+        adapter = new PTMPageAdapter(getFragmentManager(), tablayout_ptm_main.getTabCount());
 //Adding adapter to pager
         viewPager.setAdapter(adapter);
-//        adapter.notifyDataSetChanged();
     }
 
     public void setListner() {
@@ -82,8 +83,8 @@ public class MainAnnouncementFragment extends Fragment {
         });
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(
-                tabLayout_ptm_main));
-        tabLayout_ptm_main.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                tablayout_ptm_main));
+        tablayout_ptm_main.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());

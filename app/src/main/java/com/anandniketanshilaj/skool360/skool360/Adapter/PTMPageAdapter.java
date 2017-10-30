@@ -4,7 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.anandniketanshilaj.skool360.skool360.Fragments.AnnouncementFragment;
+import com.anandniketanshilaj.skool360.skool360.Fragments.CreateFragment;
+import com.anandniketanshilaj.skool360.skool360.Fragments.InboxFragment;
 import com.anandniketanshilaj.skool360.skool360.Fragments.SentFragment;
 
 /**
@@ -34,7 +35,7 @@ public class PTMPageAdapter extends FragmentStatePagerAdapter {
                 SentFragment tab2 = new SentFragment();
                 return tab2;
             case 2:
-                AnnouncementFragment tab3 = new AnnouncementFragment();
+                CreateFragment tab3 = new CreateFragment();
                 return tab3;
             default:
                 return null;
