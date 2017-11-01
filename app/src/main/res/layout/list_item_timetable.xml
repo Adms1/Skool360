@@ -7,8 +7,8 @@
         android:id="@+id/txtLecture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="13dp"
-        android:padding="5dp"
+        android:textSize="12dip"
+        android:padding="@dimen/_5sdp"
         android:layout_weight="1"
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/txtSubject"
@@ -21,16 +21,16 @@
 
     <TextView
         android:id="@+id/txtSubject"
-        android:layout_width="110dp"
+        android:layout_width="@dimen/_110sdp"
         android:layout_height="wrap_content"
-        android:textSize="13dip"
+        android:textSize="12dip"
         android:gravity="center"
         android:layout_weight="1"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
         android:layout_centerInParent="true"
         android:textColor="@color/black"
-        android:padding="5dp"
+        android:padding="@dimen/_5sdp"
         android:background="#f8fcfe"
         android:text="Subject" />
 
@@ -38,7 +38,7 @@
         android:id="@+id/txtTeacher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="13dip"
+        android:textSize="12dip"
         android:gravity="center"
         android:textColor="@color/black"
         android:background="#f8fcfe"
@@ -47,7 +47,7 @@
         android:layout_alignTop="@+id/txtSubject"
         android:layout_alignBottom="@+id/txtSubject"
         android:layout_weight="1"
-        android:padding="5dp"
+        android:padding="@dimen/_5sdp"
         android:text="Siddharth Karnik" />
 
 </RelativeLayout>

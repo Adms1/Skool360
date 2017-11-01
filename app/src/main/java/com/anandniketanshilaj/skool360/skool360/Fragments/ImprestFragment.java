@@ -47,7 +47,7 @@ import java.util.List;
 public class ImprestFragment extends Fragment {
     private View rootView;
     private Button btnMenu, btnBackImprest;
-    private TextView txtMyBalance, txtOpeningBalaceTop, txtNoRecordsHomework;
+    private TextView txtMyBalance, txtOpeningBalaceTop, txtNoRecordsImprest;
     private Spinner spinYear;
     private TableRow tblRowBalance, tblRowOpeningBalance;
     private ListView listImprestData;
@@ -84,7 +84,7 @@ public class ImprestFragment extends Fragment {
         tblRowOpeningBalance = (TableRow) rootView.findViewById(R.id.tblRowOpeningBalance);
         txtMyBalance = (TextView) rootView.findViewById(R.id.txtMyBalance);
         txtOpeningBalaceTop = (TextView) rootView.findViewById(R.id.txtOpeningBalaceTop);
-        txtNoRecordsHomework = (TextView) rootView.findViewById(R.id.txtNoRecordsHomework);
+        txtNoRecordsImprest = (TextView) rootView.findViewById(R.id.txtNoRecordsImprest);
         listImprestData = (ListView) rootView.findViewById(R.id.listImprestData);
 //        llListTitle = (LinearLayout) rootView.findViewById(R.id.llListTitle);
     }
@@ -144,7 +144,7 @@ public class ImprestFragment extends Fragment {
                                     for (int i = 0; i < termModels.size(); i++) {
                                         termText.add(termModels.get(i).getTerm());
                                     }
-                                    ArrayAdapter<String> adapterSpinYear = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_dropdown_item, termText);
+                                    ArrayAdapter<String> adapterSpinYear = new ArrayAdapter<String>(mContext,R.layout.spinner_layout, termText);
                                     spinYear.setAdapter(adapterSpinYear);
                                 } else {
                                     progressDialog.dismiss();
@@ -189,7 +189,7 @@ public class ImprestFragment extends Fragment {
                             public void run() {
                                 progressDialog.dismiss();
                                 if (imprestModels.size() > 0) {
-                                    txtNoRecordsHomework.setVisibility(View.GONE);
+                                    txtNoRecordsImprest.setVisibility(View.GONE);
                                     tblRowBalance.setVisibility(View.VISIBLE);
                                     tblRowOpeningBalance.setVisibility(View.VISIBLE);
                                     txtMyBalance.setText(imprestModels.get(0).getMyBalance());
@@ -204,7 +204,7 @@ public class ImprestFragment extends Fragment {
                                     progressDialog.dismiss();
                                     tblRowBalance.setVisibility(View.GONE);
                                     tblRowOpeningBalance.setVisibility(View.GONE);
-                                    txtNoRecordsHomework.setVisibility(View.VISIBLE);
+                                    txtNoRecordsImprest.setVisibility(View.VISIBLE);
                                     listImprestData.setVisibility(View.GONE);
 //                                llListTitle.setVisibility(View.GONE);
                                 }

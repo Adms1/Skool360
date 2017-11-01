@@ -1,39 +1,28 @@
 package com.anandniketanshilaj.skool360.skool360.Fragments;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.ExpandableListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.anandniketanshilaj.skool360.R;
 import com.anandniketanshilaj.skool360.skool360.Activities.DashBoardActivity;
-import com.anandniketanshilaj.skool360.skool360.Adapter.ExpandableListAdapter;
 import com.anandniketanshilaj.skool360.skool360.AsyncTasks.GetAttendanceAsyncTask;
-import com.anandniketanshilaj.skool360.skool360.AsyncTasks.GetStudClassworkAsyncTask;
 import com.anandniketanshilaj.skool360.skool360.Models.AttendanceModel;
-import com.anandniketanshilaj.skool360.skool360.Models.ClassWorkModel;
 import com.anandniketanshilaj.skool360.skool360.Utility.Utility;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
@@ -44,10 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Harsh on 04-Aug-16.
@@ -91,11 +77,11 @@ public class AttendanceFragment extends Fragment {
         txtNoRecordsHomework = (TextView) rootView.findViewById(R.id.txtNoRecordsHomework);
         rlCalender = (RelativeLayout) rootView.findViewById(R.id.rlCalender);
         spinMonth = (Spinner) rootView.findViewById(R.id.spinMonth);
-        ArrayAdapter<String> adapterMonth = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.month));
+        ArrayAdapter<String> adapterMonth = new ArrayAdapter<String>(mContext,R.layout.spinner_layout, getResources().getStringArray(R.array.month));
         spinMonth.setAdapter(adapterMonth);
 
         spinYear = (Spinner) rootView.findViewById(R.id.spinYear);
-        ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_dropdown_item,year1);
+        ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(mContext,R.layout.spinner_layout,year1);
         spinYear.setAdapter(adapterYear);
 
         final Calendar calendar = Calendar.getInstance();

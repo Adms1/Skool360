@@ -125,6 +125,14 @@ public class ExpandableListAdapterPayment extends BaseExpandableListAdapter {
         lblPayDate.setText(headerTitle);
         lblPaid.setTypeface(null, Typeface.BOLD);
         lblPaid.setText(headerTitle1);
+
+        if (isExpanded){
+            lblPaid.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42_down, 0);
+        }else{
+            lblPaid.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42, 0);
+        }
+
+
         return convertView;
     }
 

@@ -3,43 +3,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    android:paddingTop="5dp"
+    android:paddingTop="@dimen/_5sdp"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="@dimen/_50sdp"
         android:background="@drawable/hedar_1">
 
         <Button
             android:id="@+id/btnMenu"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:layout_marginBottom="@dimen/_1sdp"
             android:background="@drawable/menu_btn_blue" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PROFILE"
-            android:layout_marginRight="10dp"
-            android:textSize="18sp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:textSize="14sp"
+            android:layout_marginBottom="@dimen/_4sdp"
             android:textColor="@android:color/white"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 
         <Button
             android:id="@+id/btnBackProfile"
-            android:layout_width="15dp"
-            android:layout_height="20dp"
+            android:layout_width="@dimen/_13sdp"
+            android:layout_height="@dimen/_13sdp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:background="@drawable/back_btn" />
 
     </RelativeLayout>
@@ -53,17 +54,17 @@
         <RelativeLayout
             android:id="@+id/rlProfile"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="@dimen/_200sdp"
             android:background="@drawable/profilebg"
             android:gravity="center">
 
             <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profile_image"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
+                android:layout_width="@dimen/_96sdp"
+                android:layout_height="@dimen/_96sdp"
                 android:src="@drawable/profile_pic_holder"
                 app:border_color="#003d71"
-                app:border_width="2dp"
+                app:border_width="@dimen/_2sdp"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
 
@@ -72,10 +73,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profile_image"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:singleLine="true"
                 android:gravity="center"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:text="Siddharth Karnik"
                 android:textColor="@android:color/white" />
 
@@ -91,12 +92,12 @@
             <Button
                 android:id="@+id/btnPersonalDetail"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_weight="1"
                 android:background="@color/profile_dark"
                 android:gravity="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
                 android:text="Personal Detail"
                 android:textColor="@android:color/white"
                 android:textSize="11sp" />
@@ -104,14 +105,14 @@
             <Button
                 android:id="@+id/btnEducationalDetail"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_weight="1"
                 android:background="@color/profile_dark"
                 android:gravity="center"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:layout_marginLeft="@dimen/_1sdp"
+                android:layout_marginRight="@dimen/_1sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
                 android:singleLine="true"
                 android:text="Educational Detail"
                 android:textColor="@android:color/white"
@@ -120,11 +121,11 @@
             <Button
                 android:id="@+id/btnEditProfile"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_weight="1"
                 android:background="@color/profile_dark"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
                 android:gravity="center"
                 android:text="Edit Profile"
                 android:textColor="@android:color/white"
@@ -142,23 +143,23 @@
             <View
                 android:id="@+id/viewShadow1"
                 android:layout_width="match_parent"
-                android:layout_height="12dp"
+                android:layout_height="@dimen/_7sdp"
                 android:layout_weight="1"
                 android:background="@drawable/shadow_view"/>
 
             <View
                 android:id="@+id/viewShadow2"
                 android:layout_width="match_parent"
-                android:layout_height="12dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
+                android:layout_height="@dimen/_7sdp"
+                android:layout_marginLeft="@dimen/_1sdp"
+                android:layout_marginRight="@dimen/_1sdp"
                 android:layout_weight="1"
                 android:background="@drawable/shadow_view"/>
 
             <View
                 android:id="@+id/viewShadow3"
                 android:layout_width="match_parent"
-                android:layout_height="12dp"
+                android:layout_height="@dimen/_7sdp"
                 android:layout_weight="1"
                 android:background="@drawable/shadow_view"/>
 
@@ -211,7 +212,7 @@
             android:layout_alignParentBottom="true"
             android:background="@color/design_change_d2"
             android:gravity="center"
-            android:padding="5dp"
+            android:padding="@dimen/_5sdp"
             android:visibility="gone">
 
             <TextView
@@ -220,7 +221,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:text="@string/copyright_text"
                 android:textColor="@android:color/white"
                 android:textSize="10sp" />

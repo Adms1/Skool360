@@ -301,6 +301,12 @@ public class HomeFragment extends Fragment {
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
                             .replace(R.id.frame_container, fragment).commit();
+                }else if (position == 11) {
+                    fragment = new CircularFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
+                            .replace(R.id.frame_container, fragment).commit();
                 }
             }
         });

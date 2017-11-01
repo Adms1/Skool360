@@ -31,20 +31,16 @@ public class AppConfiguration {
     public static String DOMAIN_LOCAL = "http://103.8.216.132/MobileApp_Service.asmx/";
     //    public static String DOMAIN_LIVE = "http://103.8.216.132/MobileApp_Service.asmx/";
 //    public static String DOMAIN_LIVE = "http://192.168.1.9:8085/MobileApp_Service.asmx/";
-    public static String DOMAIN_LIVE ="http://192.168.1.18:8085/MobileApp_Service.asmx/";
+    public static String DOMAIN_LIVE = "http://192.168.1.18:8085/MobileApp_Service.asmx/";
 
     public static String StudentLogin = "StudentLogin";
     public static String GetUserProfile = "GetUserProfile";
     public static String ChangePassword = "ChangePassword";
-    public static String GetClasswork = "GetClasswork";
     public static String GetHomework = "GetHomework";
     public static String GetAttendence = "GetAttendence";
     public static String GetTimetable = "GetTimetable";
-    public static String AddAppointmentRequest = "AddAppointmentRequest";
     public static String GetTerm = "GetTerm";
     public static String GetImprest = "GetImprest";
-    public static String GetEvent = "GetEvent";
-    public static String GetAnnouncement = "GetAnnouncement";
     public static String GetCanteenMenu = "GetCanteenMenu";
     public static String GetCircular = "GetCircular";
     public static String GetTestDetail = "GetTestDetail";
@@ -58,4 +54,5 @@ public class AppConfiguration {
     public static String PTMTeacherStudentInsertDetail = "PTMTeacherStudentInsertDetail";
     public static String PTMDeleteMeeting = "PTMDeleteMeeting";
     public static String PTMStudentWiseTeacher = "PTMStudentWiseTeacher";
+    public static String GetCircularDetail = "GetCircularDetail";
 }

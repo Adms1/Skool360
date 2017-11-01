@@ -40,11 +40,11 @@ public class ImageAdapter extends BaseAdapter {
             R.drawable.attendance, R.drawable.home_work, R.drawable.timetable,
             R.drawable.unit_test, R.drawable.results, R.drawable.report_card,
             R.drawable.fees_1, R.drawable.imprest,
-            R.drawable.canteen, R.drawable.appointment_request,R.drawable.principalmessage
+            R.drawable.canteen, R.drawable.ptm,R.drawable.principalmessage,R.drawable.circular
     };
 
     public String[] mThumbNames = {"Attendance", "Homework", "Timetable", "Unit Test", "Results", "Report Card",
-            "Fees", "Imprest", "Canteen", "Appointment Request","Message"};
+            "Fees", "Imprest", "Canteen", "PTM","Message","Circular"};
 
     // Constructor
     public ImageAdapter(Context c) {

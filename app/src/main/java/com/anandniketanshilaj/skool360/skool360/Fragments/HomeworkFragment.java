@@ -19,11 +19,8 @@ import android.widget.TextView;
 
 import com.anandniketanshilaj.skool360.R;
 import com.anandniketanshilaj.skool360.skool360.Activities.DashBoardActivity;
-import com.anandniketanshilaj.skool360.skool360.Adapter.ExpandableListAdapter;
 import com.anandniketanshilaj.skool360.skool360.Adapter.ExpandableListAdapterHomework;
-import com.anandniketanshilaj.skool360.skool360.AsyncTasks.GetStudClassworkAsyncTask;
 import com.anandniketanshilaj.skool360.skool360.AsyncTasks.GetStudHomeworkAsyncTask;
-import com.anandniketanshilaj.skool360.skool360.Models.ClassWorkModel;
 import com.anandniketanshilaj.skool360.skool360.Models.HomeWorkModel;
 import com.anandniketanshilaj.skool360.skool360.Utility.Utility;
 

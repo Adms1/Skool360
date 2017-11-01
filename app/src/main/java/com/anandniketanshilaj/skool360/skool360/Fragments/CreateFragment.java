@@ -150,8 +150,6 @@ public class CreateFragment extends Fragment {
     }
 
     public void getsendAppoimentData() {
-
-
         Date = txtDate.getText().toString();
         purpose = edtPurpose.getText().toString();
         description = edtDescription.getText().toString();

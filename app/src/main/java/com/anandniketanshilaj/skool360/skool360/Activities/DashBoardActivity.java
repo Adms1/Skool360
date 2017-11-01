@@ -22,9 +22,9 @@ import android.widget.RelativeLayout;
 
 import com.anandniketanshilaj.skool360.R;
 import com.anandniketanshilaj.skool360.skool360.Adapter.menuoptionItemAdapter;
-import com.anandniketanshilaj.skool360.skool360.Fragments.AppointmentFragment;
 import com.anandniketanshilaj.skool360.skool360.Fragments.AttendanceFragment;
 import com.anandniketanshilaj.skool360.skool360.Fragments.CanteenFragment;
+import com.anandniketanshilaj.skool360.skool360.Fragments.CircularFragment;
 import com.anandniketanshilaj.skool360.skool360.Fragments.FeesFragment;
 import com.anandniketanshilaj.skool360.skool360.Fragments.HomeFragment;
 import com.anandniketanshilaj.skool360.skool360.Fragments.HomeworkFragment;
@@ -294,6 +294,11 @@ public class DashBoardActivity extends FragmentActivity {
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
             case 13:
+                fragment = new CircularFragment();
+                myid = fragment.getId();
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                break;
+            case 14:
                 Utility.setPref(mContext, "unm", "");
                 Utility.setPref(mContext, "pwd", "");
                 Utility.setPref(mContext, "studid", "");

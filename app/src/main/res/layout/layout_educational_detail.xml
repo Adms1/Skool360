@@ -17,14 +17,16 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:text="GRNO: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtGRNO"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
@@ -36,14 +38,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Standard: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtStandard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -54,14 +58,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Class: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtClass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
     </TableLayout>

@@ -2,12 +2,9 @@ package com.anandniketanshilaj.skool360.skool360.Utility;
 
 import android.util.Log;
 
-import com.anandniketanshilaj.skool360.skool360.Models.AnnouncementModel;
 import com.anandniketanshilaj.skool360.skool360.Models.AttendanceModel;
 import com.anandniketanshilaj.skool360.skool360.Models.CanteenModel;
 import com.anandniketanshilaj.skool360.skool360.Models.CircularModel;
-import com.anandniketanshilaj.skool360.skool360.Models.ClassWorkModel;
-import com.anandniketanshilaj.skool360.skool360.Models.EventModel;
 import com.anandniketanshilaj.skool360.skool360.Models.FeesModel;
 import com.anandniketanshilaj.skool360.skool360.Models.HomeWorkModel;
 import com.anandniketanshilaj.skool360.skool360.Models.ImprestDataModel;
@@ -80,26 +77,6 @@ public class ParseJSON {
         return result;
     }
 
-    public static Boolean parseAppointmentJson(String responseString) {
-        Boolean result = false;
-
-        try {
-            JSONObject reader = new JSONObject(responseString);
-            String data_load_basket = reader.getString("Success");
-            if (data_load_basket.toString().equals("True")) {
-                result = true;
-            } else {
-                result = false;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return result;
-    }
-
     public static ArrayList<StudProfileModel> parseUserProfileJson(String responseString) {
         ArrayList<StudProfileModel> result = new ArrayList<>();
 
@@ -155,50 +132,6 @@ public class ParseJSON {
 
         return result;
     }
-
-    public static ArrayList<ClassWorkModel> parseStudClassworkJson(String responseString) {
-        ArrayList<ClassWorkModel> result = new ArrayList<>();
-
-        try {
-            JSONObject reader = new JSONObject(responseString);
-            String data_load_basket = reader.getString("Success");
-            if (data_load_basket.toString().equals("True")) {
-                JSONArray jsonMainNode = reader.optJSONArray("FinalArray");
-                ClassWorkModel classWorkModel = null;
-
-                for (int i = 0; i < jsonMainNode.length(); i++) {
-                    JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
-                    classWorkModel = new ClassWorkModel();
-                    classWorkModel.setClassWorkDate(jsonChildNode.getString("ClassWorkDate"));
-
-                    ClassWorkModel.ClassWorkData classWorkData = null;
-                    ArrayList<ClassWorkModel.ClassWorkData> classWorkDatas = new ArrayList<>();
-                    JSONArray jsonMainNode1 = jsonChildNode.optJSONArray("Data");
-                    for (int j = 0; j < jsonMainNode1.length(); j++) {
-                        JSONObject jsonChildNode1 = jsonMainNode1.getJSONObject(j);
-                        classWorkData = classWorkModel.new ClassWorkData();
-                        classWorkData.setSubject(jsonChildNode1.getString("Subject"));
-                        classWorkData.setClasswork(jsonChildNode1.getString("Classwork"));
-                        classWorkData.setProxyStatus(jsonChildNode1.getString("ProxyStatus"));
-
-                        classWorkDatas.add(classWorkData);
-                    }
-                    classWorkModel.setClassWorkDatas(classWorkDatas);
-                    result.add(classWorkModel);
-                }
-
-            } else {
-                //invalid login
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return result;
-    }
-
     public static ArrayList<ResultModel> parseUnitTestJson(String responseString) {
         ArrayList<ResultModel> result = new ArrayList<>();
 
@@ -620,80 +553,6 @@ public class ParseJSON {
         return result;
     }
 
-    public static ArrayList<EventModel> parseEventJson(String responseString) {
-        ArrayList<EventModel> result = new ArrayList<>();
-
-        try {
-            JSONObject reader = new JSONObject(responseString);
-            String data_load_basket = reader.getString("Success");
-
-
-            if (data_load_basket.toString().equals("True")) {
-                JSONArray jsonMainNode = reader.optJSONArray("FinalArray");
-                EventModel eventModel = null;
-                for (int i = 0; i < jsonMainNode.length(); i++) {
-                    JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
-                    eventModel = new EventModel();
-                    eventModel.setCreateDate(jsonChildNode.getString("CreateDate"));
-                    eventModel.setDescription(jsonChildNode.getString("Description"));
-
-                    JSONArray jsonMainNode1 = jsonChildNode.optJSONArray("EventImage");
-                    EventModel.EventImage eventImage = null;
-                    ArrayList<EventModel.EventImage> eventImages = new ArrayList<>();
-                    for (int j = 0; j < jsonMainNode1.length(); j++) {
-                        JSONObject jsonChildNode1 = jsonMainNode1.getJSONObject(j);
-                        eventImage = eventModel.new EventImage();
-                        eventImage.setImagePath(jsonChildNode1.getString("ImagePath"));
-
-                        eventImages.add(eventImage);
-                    }
-                    eventModel.setEventImages(eventImages);
-                    result.add(eventModel);
-                }
-
-            } else {
-                //invalid login
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return result;
-    }
-
-    public static ArrayList<AnnouncementModel> parseAnnouncementJson(String responseString) {
-        ArrayList<AnnouncementModel> result = new ArrayList<>();
-
-        try {
-            JSONObject reader = new JSONObject(responseString);
-            String data_load_basket = reader.getString("Success");
-            if (data_load_basket.toString().equals("True")) {
-                JSONArray jsonMainNode = reader.optJSONArray("FinalArray");
-
-                AnnouncementModel announcementModel = null;
-                for (int i = 0; i < jsonMainNode.length(); i++) {
-                    JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
-                    announcementModel = new AnnouncementModel();
-                    announcementModel.setCreateDate(jsonChildNode.getString("CreateDate"));
-                    announcementModel.setAnnoucementDescription(jsonChildNode.getString("AnnoucementDescription"));
-                    announcementModel.setAnnoucementPDF(jsonChildNode.getString("AnnoucementPDF"));
-
-                    result.add(announcementModel);
-                }
-            } else {
-                //invalid login
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return result;
-    }
-
     public static ArrayList<CanteenModel> parseCanteenJson(String responseString) {
         ArrayList<CanteenModel> result = new ArrayList<>();
         CanteenModel canteenModel = null;
@@ -747,9 +606,9 @@ public class ParseJSON {
                 for (int i = 0; i < jsonMainNode.length(); i++) {
                     JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
                     circularModel = new CircularModel();
-                    circularModel.setCreateDate(jsonChildNode.getString("CreateDate"));
-                    circularModel.setCircularHeading(jsonChildNode.getString("CircularHeading"));
-                    circularModel.setCircularFile(jsonChildNode.getString("CircularFile"));
+                    circularModel.setDate(jsonChildNode.getString("Date"));
+                    circularModel.setSubject(jsonChildNode.getString("Subject"));
+                    circularModel.setDiscription(jsonChildNode.getString("Discription"));
 
                     result.add(circularModel);
                 }

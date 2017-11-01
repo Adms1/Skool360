@@ -7,149 +7,163 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp"
         android:text="@string/str_personal_detail"
         android:textStyle="bold"
-        android:paddingTop="10dp"
-        android:paddingLeft="10dp"/>
+        android:textSize="@dimen/_14sdp"/>
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="@dimen/_10sdp">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="130dp"
+                android:layout_width="@dimen/_130sdp"
                 android:layout_height="wrap_content"
                 android:text="Name: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Date of Birth: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtDOB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Age: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Gender: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Blood Group: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtBloodGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Birth Place: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtBirthPlace"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
     </TableLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
         android:background="@android:color/darker_gray" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp"
         android:text="@string/str_family_detail"
         android:textStyle="bold"
-        android:paddingTop="10dp"
-        android:paddingLeft="10dp"/>
+        android:textSize="@dimen/_14sdp"/>
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="@dimen/_10sdp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -157,228 +171,251 @@
             android:layout_marginTop="0dp">
 
             <TextView
-                android:layout_width="130dp"
+                android:layout_width="@dimen/_130sdp"
                 android:layout_height="wrap_content"
                 android:text="Father Name: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtFatherName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Father Phone No.: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtFatherPhNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Father Email: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtFatherEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mother Name: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtMotherName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mother Phone No.: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtMotherPhNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mother Email: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtMotherEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
     </TableLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
         android:background="@android:color/darker_gray" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp"
         android:text="@string/str_transport_detail"
         android:textStyle="bold"
-        android:paddingTop="10dp"
-        android:paddingLeft="10dp"/>
+        android:textSize="@dimen/_14sdp"/>
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="@dimen/_10sdp">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
-                android:layout_width="130dp"
+                android:layout_width="@dimen/_130sdp"
                 android:layout_height="wrap_content"
                 android:text="Address: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="City: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="KM: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtTransKMs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pick Up Time: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtTrasPickTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Drop Time: "
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
             <TextView
                 android:id="@+id/txtTrasDropTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="" />
+                android:text=""
+                android:textSize="@dimen/_12sdp"/>
         </TableRow>
 
     </TableLayout>

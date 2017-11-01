@@ -149,7 +149,7 @@ public class SentFragment extends Fragment {
                                                                     if (responsedelete.getFinalArray().size() >= 0) {
                                                                         Utility.ping(mContext, "Delete Message.");
 
-//                                                                        getSentData();
+                                                                        getSentData();
                                                                     } else {
                                                                         progressDialog.dismiss();
                                                                     }
