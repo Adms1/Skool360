@@ -236,7 +236,7 @@ public class ProfileFragment extends Fragment {
                                                 @Override
                                                 public void run() {
                                                     progressDialog.dismiss();
-                                                    if (result == true) {
+                                                    if (result == true  ) {
                                                         Utility.pong(mContext, "Password Updated Successfully");
                                                         if (!Utility.getPref(mContext, "pwd").equalsIgnoreCase("")) {
                                                             Utility.setPref(mContext, "pwd", edtPassword.getText().toString());

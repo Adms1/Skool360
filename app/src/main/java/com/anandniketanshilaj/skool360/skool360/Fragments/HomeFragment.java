@@ -1,9 +1,13 @@
 package com.anandniketanshilaj.skool360.skool360.Fragments;
 
-import android.app.FragmentTransaction;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -12,8 +16,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -25,7 +31,11 @@ import com.anandniketanshilaj.skool360.skool360.Activities.DashBoardActivity;
 import com.anandniketanshilaj.skool360.skool360.Adapter.HomeImageAdapter;
 import com.anandniketanshilaj.skool360.skool360.Adapter.ImageAdapter;
 import com.anandniketanshilaj.skool360.skool360.AsyncTasks.AddDeviceDetailAsyncTask;
+import com.anandniketanshilaj.skool360.skool360.AsyncTasks.DeviceVersionAsyncTask;
 import com.anandniketanshilaj.skool360.skool360.AsyncTasks.GetUserProfileAsyncTask;
+import com.anandniketanshilaj.skool360.skool360.AsyncTasks.PTMStudentWiseTeacherAsyncTask;
+import com.anandniketanshilaj.skool360.skool360.Interfacess.OnCompletionListner;
+import com.anandniketanshilaj.skool360.skool360.Models.DeviceVersionModel;
 import com.anandniketanshilaj.skool360.skool360.Models.StudProfileModel;
 import com.anandniketanshilaj.skool360.skool360.Utility.Utility;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -41,7 +51,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -75,6 +84,11 @@ public class HomeFragment extends Fragment {
     private TextView student_name_txt, student_classname_txt, teacher_name_txt, teacher_name1_txt,
             vehicle_name_txt, vehicle_picktime_txt, vehicle_droptime_txt, admission_txt, attendance_txt;
 
+    private boolean isVersionCodeUpdated = false;
+    private int versionCode = 0;
+    private DeviceVersionAsyncTask deviceVersionAsyncTask = null;
+    DeviceVersionModel deviceVersionModel;
+
     public HomeFragment() {
     }
 
@@ -86,8 +100,7 @@ public class HomeFragment extends Fragment {
         initViews();
         setListners();
         if (Utility.isNetworkConnected(mContext)) {
-            getRegistrationID();
-            getUserProfile();
+            getVersionUpdateInfo();
         } else {
             Utility.ping(mContext, "Network not available");
         }
@@ -95,7 +108,13 @@ public class HomeFragment extends Fragment {
     }
 
     public void initViews() {
-
+        PackageInfo pInfo = null;
+        try {
+            pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+            versionCode = pInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
         btnMenu = (Button) rootView.findViewById(R.id.btnMenu);
         grid_view = (GridView) rootView.findViewById(R.id.grid_view);
         grid_view.setAdapter(new ImageAdapter(mContext));
@@ -164,6 +183,7 @@ public class HomeFragment extends Fragment {
                     Settings.Secure.ANDROID_ID));
         }
     }
+
     private void sendRegistrationToServer(String token, String uniqueID) {
         try {
             HashMap<String, String> hashMap = new HashMap<>();
@@ -176,9 +196,6 @@ public class HomeFragment extends Fragment {
             e.printStackTrace();
         }
     }
-
-    //change Megha 04-09-2017
-
     public void setListners() {
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,49 +206,6 @@ public class HomeFragment extends Fragment {
         grid_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                /*                else if (position == 2) {
-//                    fragment = new ClassworkFragment();
-//                    fragmentManager = getFragmentManager();
-//                    fragmentManager.beginTransaction()
-//                            .setCustomAnimations(0, 0)
-//                            .replace(R.id.frame_container, fragment).commit();
-//                }
-                     else if (position == 4) {
-                    fragment = new AnnouncementFragment();
-                    fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
-                            .replace(R.id.frame_container, fragment).commit();
-                }
-                    else if (position == 5) {
-                    fragment = new CircularFragment();
-                    fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
-                            .replace(R.id.frame_container, fragment).commit();
-                }
-                     else if (position == 5) {
-                    fragment = new ExamFragment();
-                    fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
-                            .replace(R.id.frame_container, fragment).commit();
-                }else if (position == 10) {
-                    fragment = new CourseFragment();
-                    fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
-                            .replace(R.id.frame_container, fragment).commit();
-                }
-                else if (position == 8) {
-                    fragment = new EventFragment();
-                    fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
-                            .replace(R.id.frame_container, fragment).commit();
-                }
-                */
 
                 if (position == 0) {
                     fragment = new AttendanceFragment();
@@ -251,8 +225,6 @@ public class HomeFragment extends Fragment {
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
                             .replace(R.id.frame_container, fragment).commit();
-//                    "Attendance", "Homework", "Timetable","Unit Test",  "Results", "Report Card",
-//                    "Appointment Request", "Imprest", "Event", "Canteen",  "Course"};
                 } else if (position == 3) {
                     fragment = new UnitTestFragment();
                     fragmentManager = getFragmentManager();
@@ -301,7 +273,7 @@ public class HomeFragment extends Fragment {
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
                             .replace(R.id.frame_container, fragment).commit();
-                }else if (position == 11) {
+                } else if (position == 11) {
                     fragment = new CircularFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
@@ -313,10 +285,6 @@ public class HomeFragment extends Fragment {
     }
 
     public void getUserProfile() {
-//        progressDialog = new ProgressDialog(getActivity());
-//        progressDialog.setCancelable(false);
-//        progressDialog.setMessage("Please wait...");
-//        progressDialog.show();
 
         new Thread(new Runnable() {
             @Override
@@ -329,7 +297,6 @@ public class HomeFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-//                            progressDialog.dismiss();
                             student_name_txt.setText(studDetailList.get(0).getStudentName());
                             imageLoader.displayImage(studDetailList.get(0).getStudentImage(), profile_image);
                             vehicle_picktime_txt.setText("Pick Up :" + studDetailList.get(0).getTransport_PicupTime());
@@ -351,5 +318,63 @@ public class HomeFragment extends Fragment {
             }
         }).start();
 
+    }
+
+    public void getVersionUpdateInfo() {
+        if (Utility.isNetworkConnected(mContext)) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        HashMap<String, String> params = new HashMap<String, String>();
+                        params.put("UserID", Utility.getPref(mContext, "studid"));
+                        params.put("VersionID",String.valueOf(versionCode));//String.valueOf(versionCode)
+                        params.put("UserType", "Student");
+                        deviceVersionAsyncTask = new DeviceVersionAsyncTask(params);
+                        deviceVersionModel = deviceVersionAsyncTask.execute().get();
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (deviceVersionModel.getSuccess().equalsIgnoreCase("True")) {
+                                    isVersionCodeUpdated = true;
+                                    Log.d("hellotrue", "" + isVersionCodeUpdated);
+                                    getRegistrationID();
+                                    getUserProfile();
+                                } else {
+                                    isVersionCodeUpdated = false;
+                                    Log.d("hellofalse", "" + isVersionCodeUpdated);
+                                    new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AppTheme))
+                                            .setCancelable(false)
+                                            .setTitle("Skool360 Shilaj Update")
+                                            .setIcon(mContext.getResources().getDrawable(R.drawable.ic_launcher))
+                                            .setMessage("Please update to a new version of the app.")
+                                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.anandniketanshilaj.skool360"));
+                                                    getActivity().startActivity(i);
+
+                                                }
+                                            })
+                                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    // do nothing
+                                                    Utility.pong(mContext, "You wont be able to use other funcationality without updating to a newer version");
+                                                    getActivity().finish();
+                                                }
+                                            })
+                                            .setIcon(R.drawable.ic_launcher)
+                                            .show();
+
+                                }
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        } else {
+            Utility.ping(mContext, "Network not available");
+        }
     }
 }

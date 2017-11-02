@@ -2,11 +2,16 @@ package com.anandniketanshilaj.skool360.skool360.Utility;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Environment;
 import android.widget.Toast;
+
+import com.anandniketanshilaj.skool360.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -117,4 +122,27 @@ public class Utility {
             e.printStackTrace();
         }
     }
+
+    public static void openVersionDialog(final Context context) {
+        new android.app.AlertDialog.Builder(context)
+                .setTitle("Skool360 Shilaj Update")
+                .setIcon(context.getResources().getDrawable(R.drawable.skool_360))
+                .setMessage("Please update to a new version of the app.")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.anandniketanshilaj.skool360"));
+                        context.startActivity(i);
+
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                        Utility.pong(context, "You wont be able to login without updating to a newer version");
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
 }

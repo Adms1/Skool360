@@ -203,28 +203,6 @@ public class DashBoardActivity extends FragmentActivity {
     boolean first_time_trans = true;
 
     public void displayView(int position) {
-
-                /*  case 4:
-                fragment = new ClassworkFragment();
-                myid = fragment.getId();
-                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-                break;
-                 case 6:
-                fragment = new EventFragment();
-                myid = fragment.getId();
-                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-                break;
-                  case 9:
-                fragment = new AnnouncementFragment();
-                myid = fragment.getId();
-                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-                break;
-            case 10:
-                fragment = new CircularFragment();
-                myid = fragment.getId();
-                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-                break;
-*/
         switch (position) {
             case 0:
                 fragment = new HomeFragment();

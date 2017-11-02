@@ -77,6 +77,27 @@ public class ParseJSON {
         return result;
     }
 
+    public static HashMap<String, String> parseCheck_AppVersionJson(String responseString) {
+        HashMap<String, String> result = new HashMap<>();
+
+        try {
+            JSONObject reader = new JSONObject(responseString);
+            String data_load_basket = reader.getString("Success");
+            if (data_load_basket.toString().equals("True")) {
+                   result.put("versionSatuts","True");
+            } else {
+                //invalid login
+                result.put("versionSatuts","False");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
     public static ArrayList<StudProfileModel> parseUserProfileJson(String responseString) {
         ArrayList<StudProfileModel> result = new ArrayList<>();
 
@@ -132,6 +153,7 @@ public class ParseJSON {
 
         return result;
     }
+
     public static ArrayList<ResultModel> parseUnitTestJson(String responseString) {
         ArrayList<ResultModel> result = new ArrayList<>();
 

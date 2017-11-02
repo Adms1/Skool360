@@ -5,19 +5,16 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.anandniketanshilaj.skool360.R;
-import com.anandniketanshilaj.skool360.skool360.AsyncTasks.AddDeviceDetailAsyncTask;
+import com.anandniketanshilaj.skool360.skool360.AsyncTasks.DeviceVersionAsyncTask;
 import com.anandniketanshilaj.skool360.skool360.AsyncTasks.VerifyLoginAsyncTask;
+import com.anandniketanshilaj.skool360.skool360.Models.DeviceVersionModel;
 import com.anandniketanshilaj.skool360.skool360.Utility.Utility;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.HashMap;
 
@@ -33,6 +30,9 @@ public class LoginActivity extends Activity {
     private HashMap<String, String> param = new HashMap<String, String>();
     private String putExtras = "0";
     private String putExtrasData = "0";
+    private boolean isVersionCodeUpdated = false;
+    private int versionCode = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,14 @@ public class LoginActivity extends Activity {
     }
 
     public void initViews() {
+//        PackageInfo pInfo = null;
+//        try {
+//            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+//            versionCode = pInfo.versionCode;
+//        } catch (PackageManager.NameNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        getVersionCodeUpdated();
         edtUserName = (EditText) findViewById(R.id.edtUserName);
         edtPassword = (EditText) findViewById(R.id.edtPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);
@@ -60,7 +68,8 @@ public class LoginActivity extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Utility.isNetworkConnected(mContext)) {
+                if (Utility.isNetworkConnected(mContext)) {
+//                    if (isVersionCodeUpdated) {
                     if (!edtUserName.getText().toString().equalsIgnoreCase("")) {
                         if (!edtPassword.getText().toString().equalsIgnoreCase("")) {
                             login();
@@ -72,15 +81,21 @@ public class LoginActivity extends Activity {
                         Utility.pong(mContext, "User name cant be blank");
                         edtUserName.requestFocus();
                     }
-                }else{
-                    Utility.ping(mContext,"Network not available");
+//                    } else {
+//                        Utility.openVersionDialog(LoginActivity.this);
+//                    }
+                } else {
+                    Utility.ping(mContext, "Network not available");
                 }
             }
         });
 
     }
-    public void login() {
 
+
+
+
+    public void login() {
         progressDialog = new ProgressDialog(mContext);
         progressDialog.setMessage("Please wait...");
         progressDialog.setCancelable(false);
@@ -114,9 +129,9 @@ public class LoginActivity extends Activity {
 
                                 Utility.pong(mContext, "Login Successful");
                                 Intent intentDashboard = new Intent(LoginActivity.this, DashBoardActivity.class);
-                                intentDashboard.putExtra("message",putExtrasData);
+                                intentDashboard.putExtra("message", putExtrasData);
                                 intentDashboard.putExtra("fromNotification", putExtras);
-                                System.out.println("messageLogin: " +putExtrasData);
+                                System.out.println("messageLogin: " + putExtrasData);
                                 startActivity(intentDashboard);
                                 finish();
                             } else {
@@ -134,7 +149,7 @@ public class LoginActivity extends Activity {
     public void checkUnmPwd() {
         if (!Utility.getPref(mContext, "unm").equalsIgnoreCase("")) {
             Intent intentDashboard = new Intent(LoginActivity.this, DashBoardActivity.class);
-            intentDashboard.putExtra("message",putExtrasData);
+            intentDashboard.putExtra("message", putExtrasData);
             intentDashboard.putExtra("fromNotification", putExtras);
             startActivity(intentDashboard);
             finish();
