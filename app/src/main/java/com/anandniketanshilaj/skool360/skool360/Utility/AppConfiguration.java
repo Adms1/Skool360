@@ -30,7 +30,7 @@ public class AppConfiguration {
     //Local
     public static String DOMAIN_LOCAL = "http://103.8.216.132/MobileApp_Service.asmx/";
     //    public static String DOMAIN_LIVE = "http://103.8.216.132/MobileApp_Service.asmx/";
-//    public static String DOMAIN_LIVE = "http://192.168.1.9:8085/MobileApp_Service.asmx/";
+//    public static String DOMAIN_LIVE = "http://192.168.1.18:8085/MobileApp_Service.asmx/";
     public static String DOMAIN_LIVE = "http://103.8.216.132/MobileApp_Service.asmx/";
 
     public static String StudentLogin = "StudentLogin";

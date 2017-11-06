@@ -101,6 +101,8 @@ public class HomeFragment extends Fragment {
         setListners();
         if (Utility.isNetworkConnected(mContext)) {
             getVersionUpdateInfo();
+//            getRegistrationID();
+//            getUserProfile();
         } else {
             Utility.ping(mContext, "Network not available");
         }
@@ -196,6 +198,7 @@ public class HomeFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
     public void setListners() {
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -328,7 +331,7 @@ public class HomeFragment extends Fragment {
                     try {
                         HashMap<String, String> params = new HashMap<String, String>();
                         params.put("UserID", Utility.getPref(mContext, "studid"));
-                        params.put("VersionID",String.valueOf(versionCode));//String.valueOf(versionCode)
+                        params.put("VersionID", String.valueOf(versionCode));//String.valueOf(versionCode)
                         params.put("UserType", "Student");
                         deviceVersionAsyncTask = new DeviceVersionAsyncTask(params);
                         deviceVersionModel = deviceVersionAsyncTask.execute().get();
