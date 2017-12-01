@@ -133,7 +133,7 @@ public class FeesFragment extends Fragment {
 
                                 } else {
                                     progressDialog.dismiss();
-                                    txtNoRecordsUnitTest.setVisibility(View.VISIBLE);
+                                    Utility.ping(mContext,"No Record Found");
                                 }
                             }
                         });

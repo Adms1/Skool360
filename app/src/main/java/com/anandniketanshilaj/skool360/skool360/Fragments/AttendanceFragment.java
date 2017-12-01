@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import com.anandniketanshilaj.skool360.skool360.Utility.Utility;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 
+import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,6 +54,7 @@ public class AttendanceFragment extends Fragment {
     private ArrayList<String> absentDates = new ArrayList<>();
     private ArrayList<String> presentDates = new ArrayList<>();
     private ArrayList<String> year1 = new ArrayList<>();
+
     public AttendanceFragment() {
     }
 
@@ -60,7 +63,6 @@ public class AttendanceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.attendance_fragment, container, false);
         mContext = getActivity();
-
         initViews();
         setListners();
 
@@ -77,11 +79,33 @@ public class AttendanceFragment extends Fragment {
         txtNoRecordsHomework = (TextView) rootView.findViewById(R.id.txtNoRecordsHomework);
         rlCalender = (RelativeLayout) rootView.findViewById(R.id.rlCalender);
         spinMonth = (Spinner) rootView.findViewById(R.id.spinMonth);
-        ArrayAdapter<String> adapterMonth = new ArrayAdapter<String>(mContext,R.layout.spinner_layout, getResources().getStringArray(R.array.month));
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinMonth);
+
+            popupWindow.setHeight(getResources().getStringArray(R.array.month).length > 5 ? 500 : getResources().getStringArray(R.array.month).length * 100);
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
+        ArrayAdapter<String> adapterMonth = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, getResources().getStringArray(R.array.month));
         spinMonth.setAdapter(adapterMonth);
 
         spinYear = (Spinner) rootView.findViewById(R.id.spinYear);
-        ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(mContext,R.layout.spinner_layout,year1);
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinYear);
+
+            popupWindow.setHeight(year1.size() > 5 ? 500 : year1.size() * 100);
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
+        ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, year1);
         spinYear.setAdapter(adapterYear);
 
         final Calendar calendar = Calendar.getInstance();
@@ -114,6 +138,7 @@ public class AttendanceFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
     public void Getnextandpreviousyear() {
         final Calendar calendar = Calendar.getInstance();
         int currentyear = calendar.get(Calendar.YEAR);
@@ -123,8 +148,9 @@ public class AttendanceFragment extends Fragment {
         year1.add(String.valueOf(currentyear));
         year1.add(String.valueOf(nextyear));
     }
+
     public void getAttendance() {
-        if(Utility.isNetworkConnected(mContext)) {
+        if (Utility.isNetworkConnected(mContext)) {
             progressDialog = new ProgressDialog(mContext);
             progressDialog.setMessage("Please Wait...");
             progressDialog.setCancelable(false);
@@ -181,8 +207,8 @@ public class AttendanceFragment extends Fragment {
                     }
                 }
             }).start();
-        }else{
-            Utility.ping(mContext,"Network not available");
+        } else {
+            Utility.ping(mContext, "Network not available");
         }
     }
 
@@ -220,9 +246,9 @@ public class AttendanceFragment extends Fragment {
         @Override
         public void onSelectDate(Date date, View view) {
             for (int i = 0; i < attendanceModels.get(0).getEventsList().size(); i++) {
-                if(dateToString(date).equalsIgnoreCase(attendanceModels.get(0).getEventsList().get(i).getAttendanceDate())){
+                if (dateToString(date).equalsIgnoreCase(attendanceModels.get(0).getEventsList().get(i).getAttendanceDate())) {
                     String comments = attendanceModels.get(0).getEventsList().get(i).getComment().toString();
-                    if(!comments.equalsIgnoreCase("")) {
+                    if (!comments.equalsIgnoreCase("")) {
                         AlertDialog ad = new AlertDialog.Builder(view.getContext()).create();
                         ad.setCancelable(false);
                         ad.setTitle("Comment");
@@ -258,7 +284,7 @@ public class AttendanceFragment extends Fragment {
         }
     };
 
-    public void showAlert(){
+    public void showAlert() {
         final AlertDialog.Builder alertbox = new AlertDialog.Builder(getActivity());
 
         alertbox.setTitle("Do you want To exit ?");

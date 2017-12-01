@@ -41,6 +41,7 @@ import com.anandniketanshilaj.skool360.skool360.Models.menuoptionItem;
 import com.anandniketanshilaj.skool360.skool360.Utility.Utility;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @SuppressLint("NewApi")
 @SuppressWarnings("deprecation")
@@ -59,6 +60,7 @@ public class DashBoardActivity extends FragmentActivity {
     public static String filename = "Valustoringfile";
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
     private String putData = "0";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -97,7 +99,7 @@ public class DashBoardActivity extends FragmentActivity {
 //        onNewIntent(getIntent());
         if (getIntent().getStringExtra("message") != null) {
             putData = getIntent().getStringExtra("message").toString();
-            Log.d("notificationData",putData);
+            Log.d("notificationData", putData);
         }
         if (getIntent().getStringExtra("fromNotification") != null) {
             String key = getIntent().getStringExtra("fromNotification").toString();
@@ -238,17 +240,17 @@ public class DashBoardActivity extends FragmentActivity {
                 break;
             case 6:
                 fragment = new ResultFragment();
-                myid=fragment.getId();
+                myid = fragment.getId();
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
             case 7:
                 fragment = new ReportCardFragment();
-                myid=fragment.getId();
+                myid = fragment.getId();
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
             case 8:
                 fragment = new FeesFragment();
-                myid=fragment.getId();
+                myid = fragment.getId();
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
             case 9:
@@ -300,12 +302,12 @@ public class DashBoardActivity extends FragmentActivity {
                             .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
                             .replace(R.id.frame_container, fragment).commit();
 
-                }else {
+                } else {
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
                             .replace(R.id.frame_container, fragment).commit();
                 }
-            }else {
+            } else {
                 fragmentManager.beginTransaction()
                         .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
                         .replace(R.id.frame_container, fragment).commit();
@@ -340,6 +342,24 @@ public class DashBoardActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        displayView(0);
+//        displayView(0);
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            List<Fragment> fragments = getSupportFragmentManager().getFragments();
+            if (fragments != null) {
+                for (Fragment fragment : fragments) {
+                    if(fragment instanceof HomeFragment){
+                    }else{
+                        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                    }
+                }
+            }
+        } else {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+            startActivity(intent);
+            finish();
+            System.exit(0);
+        }
     }
 }

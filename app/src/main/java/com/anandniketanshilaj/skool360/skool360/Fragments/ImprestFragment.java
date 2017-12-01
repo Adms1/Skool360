@@ -35,6 +35,7 @@ import com.anandniketanshilaj.skool360.skool360.Models.ImprestDataModel;
 import com.anandniketanshilaj.skool360.skool360.Models.TermModel;
 import com.anandniketanshilaj.skool360.skool360.Utility.Utility;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -143,6 +144,17 @@ public class ImprestFragment extends Fragment {
                                     ArrayList<String> termText = new ArrayList<String>();
                                     for (int i = 0; i < termModels.size(); i++) {
                                         termText.add(termModels.get(i).getTerm());
+                                    }
+                                    try {
+                                        Field popup = Spinner.class.getDeclaredField("mPopup");
+                                        popup.setAccessible(true);
+
+                                        // Get private mPopup member variable and try cast to ListPopupWindow
+                                        android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinYear);
+
+                                        popupWindow.setHeight(termText.size() > 5 ? 500 : termText.size() * 100);
+                                    } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+                                        // silently fail...
                                     }
                                     ArrayAdapter<String> adapterSpinYear = new ArrayAdapter<String>(mContext,R.layout.spinner_layout, termText);
                                     spinYear.setAdapter(adapterSpinYear);

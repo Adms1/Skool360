@@ -35,6 +35,7 @@
                 android:paddingBottom="@dimen/_5sdp"
                 android:paddingTop="@dimen/_5sdp"
                 android:text="hiiii"
+                android:drawableRight="@drawable/arrow_1_42"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
 
