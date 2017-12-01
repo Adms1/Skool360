@@ -45,7 +45,6 @@
 
     </RelativeLayout>
 
-
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -150,7 +149,7 @@
         android:layout_height="wrap_content"
         android:text="No Records Found..."
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:textColor="@android:color/holo_red_dark"
         android:textStyle="bold"
         android:textSize="@dimen/_12sdp"
@@ -161,6 +160,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@color/white"
-        android:dividerHeight="@dimen/_5sdp"/>
+        android:dividerHeight="@dimen/_5sdp"
+        android:scrollbars="none"/>
 
 </LinearLayout>

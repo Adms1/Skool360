@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:paddingTop="@dimen/_5sdp"
     android:weightSum="1">
-    
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -70,19 +69,19 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_height="@dimen/_25sdp"
                         android:layout_weight="1.6"
                         android:background="@color/payment_screen"
                         android:gravity="center"
-                        android:layout_margin="0.5dp"
+                        android:layout_margin="0.3dp"
                         android:text="DETAILS"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1.6"
                         android:background="@color/payment_screen"
                         android:gravity="center"
@@ -92,8 +91,8 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1.6"
                         android:background="@color/payment_screen"
                         android:gravity="center"
@@ -110,8 +109,8 @@
                     <TextView
                         android:id="@+id/textView"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -122,8 +121,8 @@
                     <TextView
                         android:id="@+id/previous_balance_term1_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -134,8 +133,8 @@
                     <TextView
                         android:id="@+id/previous_balance_term2_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -152,8 +151,8 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -164,8 +163,8 @@
                     <TextView
                         android:id="@+id/caution_fees_term1_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -176,8 +175,8 @@
                     <TextView
                         android:id="@+id/caution_fees_term2_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -194,8 +193,8 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -206,8 +205,8 @@
                     <TextView
                         android:id="@+id/tutionfees_term1_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -218,8 +217,8 @@
                     <TextView
                         android:id="@+id/tutionfees_term2_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -237,8 +236,8 @@
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -249,8 +248,8 @@
                     <TextView
                         android:id="@+id/transportfees_term1_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -261,8 +260,8 @@
                     <TextView
                         android:id="@+id/transportfees_term2_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -278,8 +277,8 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -290,8 +289,8 @@
                     <TextView
                         android:id="@+id/imprest_term1_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -302,8 +301,8 @@
                     <TextView
                         android:id="@+id/imprest_term2_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -320,8 +319,8 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -332,8 +331,8 @@
                     <TextView
                         android:id="@+id/admission_fees_term1_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -344,8 +343,8 @@
                     <TextView
                         android:id="@+id/admission_fees_term2_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -362,8 +361,8 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -374,8 +373,8 @@
                     <TextView
                         android:id="@+id/term_fees_term1_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -386,8 +385,8 @@
                     <TextView
                         android:id="@+id/term_fees_term2_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -405,8 +404,8 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -417,8 +416,8 @@
                     <TextView
                         android:id="@+id/latefees_term1_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -429,8 +428,8 @@
                     <TextView
                         android:id="@+id/latefees_term2_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -447,8 +446,8 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -459,8 +458,8 @@
                     <TextView
                         android:id="@+id/discount_fee_term1_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -471,8 +470,8 @@
                     <TextView
                         android:id="@+id/discount_fee_term2_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -489,8 +488,8 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -501,8 +500,8 @@
                     <TextView
                         android:id="@+id/totalpayablefees_term1_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -513,8 +512,8 @@
                     <TextView
                         android:id="@+id/totalpayablefees_term2_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -531,8 +530,8 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -543,8 +542,8 @@
                     <TextView
                         android:id="@+id/paidfees_term1_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -555,8 +554,8 @@
                     <TextView
                         android:id="@+id/paidfees_term2_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -573,8 +572,8 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -586,8 +585,8 @@
                     <TextView
                         android:id="@+id/balance_term1_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -598,8 +597,8 @@
                     <TextView
                         android:id="@+id/balance_term2_txt"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -617,8 +616,8 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1.6"
                         android:background="@color/app_bg"
                         android:gravity="center"
@@ -628,15 +627,15 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg">
 
                         <TextView
                             android:id="@+id/paynow_term1_txt"
                             android:layout_width="0dp"
-                            android:layout_height="@dimen/_30sdp"
+                            android:layout_height="@dimen/_25sdp"
                             android:layout_margin="@dimen/_3sdp"
                             android:layout_weight="1"
                             android:background="#3D89CB"
@@ -648,15 +647,15 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="0.5dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="0.3dp"
                         android:layout_weight="1"
                         android:background="@color/app_bg">
 
                         <TextView
                             android:id="@+id/paynow_term2_txt"
                             android:layout_width="0dp"
-                            android:layout_height="@dimen/_30sdp"
+                            android:layout_height="@dimen/_25sdp"
                             android:layout_margin="@dimen/_3sdp"
                             android:layout_weight="1"
                             android:background="#3D89CB"
@@ -684,13 +683,13 @@
                 android:id="@+id/payment_history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp"
+                android:layout_margin="@dimen/_10sdp"
                 android:gravity="left"
                 android:text="Payment History"
                 android:textColor="@color/syllabuscolor"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_14sdp"
                 android:textStyle="bold"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <ExpandableListView
                 android:id="@+id/lvExpPayment"

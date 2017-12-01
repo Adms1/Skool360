@@ -26,7 +26,7 @@
     <color name="female_selector">#FED6D7</color>
 
     <!-- #49C1E8 -->
-
+    <color name="offwhite">#A6FFFFFF</color>
     <color name="attendance_present_old">#b5e61d</color>
     <color name="attendance_absent_old">#ed1c24</color>
     <color name="attendance_present_new">#86c129</color>

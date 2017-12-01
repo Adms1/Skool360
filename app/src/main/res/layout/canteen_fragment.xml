@@ -19,7 +19,7 @@
             android:layout_marginBottom="@dimen/_1sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_1sdp"
-            android:background="@drawable/menu_btn_blue" />
+            android:background="@drawable/menu_btn_blue"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,8 +44,6 @@
             android:background="@drawable/back_btn" />
 
     </RelativeLayout>
-
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -99,7 +97,7 @@
         android:textColor="@android:color/holo_red_dark"
         android:textStyle="bold"
         android:textSize="@dimen/_12sdp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <ListView
         android:id="@+id/listCanteen"
@@ -108,6 +106,6 @@
         android:layout_margin="10dp"
         android:divider="@null"
         android:scrollbars="none"
-        android:dividerHeight="0dp"  />
+        android:dividerHeight="0dp" />
 
 </LinearLayout>
