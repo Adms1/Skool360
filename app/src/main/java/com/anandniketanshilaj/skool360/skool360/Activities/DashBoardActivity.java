@@ -294,13 +294,13 @@ public class DashBoardActivity extends FragmentActivity {
         if (fragment != null) {
 
             FragmentManager fragmentManager = getSupportFragmentManager();
-
             if (fragment instanceof HomeFragment) {
                 if (first_time_trans) {
                     first_time_trans = false;
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
-                            .replace(R.id.frame_container, fragment).commit();
+                            .replace(R.id.frame_container, fragment)
+                            .addToBackStack("HomeFragment").commit();
 
                 } else {
                     fragmentManager.beginTransaction()

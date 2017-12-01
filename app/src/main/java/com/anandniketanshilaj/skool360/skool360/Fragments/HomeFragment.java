@@ -207,14 +207,14 @@ public class HomeFragment extends Fragment {
         grid_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String att = "AttendanceFragment";
                 if (position == 0) {
                     fragment = new AttendanceFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
                             .replace(R.id.frame_container, fragment)
-                            .addToBackStack(att).commit();
+                            .addToBackStack(null)
+                            .commit();
                 } else if (position == 1) {
                     fragment = new HomeworkFragment();
                     fragmentManager = getFragmentManager();
