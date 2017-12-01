@@ -33,8 +33,6 @@ import com.anandniketanshilaj.skool360.skool360.Adapter.ImageAdapter;
 import com.anandniketanshilaj.skool360.skool360.AsyncTasks.AddDeviceDetailAsyncTask;
 import com.anandniketanshilaj.skool360.skool360.AsyncTasks.DeviceVersionAsyncTask;
 import com.anandniketanshilaj.skool360.skool360.AsyncTasks.GetUserProfileAsyncTask;
-import com.anandniketanshilaj.skool360.skool360.AsyncTasks.PTMStudentWiseTeacherAsyncTask;
-import com.anandniketanshilaj.skool360.skool360.Interfacess.OnCompletionListner;
 import com.anandniketanshilaj.skool360.skool360.Models.DeviceVersionModel;
 import com.anandniketanshilaj.skool360.skool360.Models.StudProfileModel;
 import com.anandniketanshilaj.skool360.skool360.Utility.Utility;

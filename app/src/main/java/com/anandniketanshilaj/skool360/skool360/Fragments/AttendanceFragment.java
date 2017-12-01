@@ -119,8 +119,8 @@ public class AttendanceFragment extends Fragment {
         int currentyear = calendar.get(Calendar.YEAR);
         int nextyear = calendar.get(Calendar.YEAR) + 1;
         int previousyear = calendar.get(Calendar.YEAR) - 1;
-        year1.add(String.valueOf(currentyear));
         year1.add(String.valueOf(previousyear));
+        year1.add(String.valueOf(currentyear));
         year1.add(String.valueOf(nextyear));
     }
     public void getAttendance() {

@@ -89,18 +89,5 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationManager.notify(notifyID, noti);
         //Integer.valueOf(push_message_id)
 
-        /*Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setContentText(messageBody)
-                .setContentTitle("Skool 360 Shilaj")
-                .setAutoCancel(true)
-                .setSound(defaultSoundUri)
-                .setContentIntent(pendingNotificationIntent);
- 
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
- 
-        notificationManager.notify(0, notificationBuilder.build());*/
     }
 }

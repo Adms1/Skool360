@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
@@ -37,7 +38,7 @@ public class ExpandableListAdapterCircular extends BaseExpandableListAdapter {
     TextView txtCircularSubject, txtCircularDate;
     LinearLayout llHeaderRow;
     ImageView imgBulletCircular;
-
+    WebView circular_description_webview;
     public ExpandableListAdapterCircular(Context context, List<String> listDataHeader,
                                          HashMap<String, ArrayList<CircularModel>> listDataChildcircular) {
         this._context = context;
@@ -60,13 +61,17 @@ public class ExpandableListAdapterCircular extends BaseExpandableListAdapter {
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
         final ArrayList<CircularModel> childData = getChild(groupPosition, 0);
-        WebView circular_description_webview;
+
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.list_circular_row, null);
         }
+
+
         circular_description_webview = (WebView) convertView.findViewById(R.id.circular_description_webview);
         circular_description_webview.loadData(childData.get(childPosition).getDiscription(), "text/html", "UTF-8");
+        WebSettings webSettings=circular_description_webview.getSettings();
+        webSettings.setTextSize(WebSettings.TextSize.SMALLER);
         Log.d("webview",childData.get(childPosition).getDiscription());
 
         return convertView;
