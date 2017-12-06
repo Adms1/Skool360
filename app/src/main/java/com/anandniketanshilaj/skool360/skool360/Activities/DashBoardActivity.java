@@ -342,24 +342,24 @@ public class DashBoardActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-//        displayView(0);
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
-            List<Fragment> fragments = getSupportFragmentManager().getFragments();
-            if (fragments != null) {
-                for (Fragment fragment : fragments) {
-                    if(fragment instanceof HomeFragment){
-                    }else{
-                        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-                    }
-                }
-            }
-        } else {
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
-            startActivity(intent);
-            finish();
-            System.exit(0);
-        }
+        displayView(0);
+//        if (getFragmentManager().getBackStackEntryCount() > 0) {
+//            List<Fragment> fragments = getSupportFragmentManager().getFragments();
+//            if (fragments != null) {
+//                for (Fragment fragment : fragments) {
+//                    if(fragment instanceof HomeFragment){
+//                    }else{
+//                        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+//                    }
+//                }
+//            }
+//        } else {
+//            Intent intent = new Intent(Intent.ACTION_MAIN);
+//            intent.addCategory(Intent.CATEGORY_HOME);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+//            startActivity(intent);
+//            finish();
+//            System.exit(0);
+//        }
     }
 }

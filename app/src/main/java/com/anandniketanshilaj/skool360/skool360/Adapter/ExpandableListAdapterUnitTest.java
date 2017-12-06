@@ -29,7 +29,7 @@ public class ExpandableListAdapterUnitTest extends BaseExpandableListAdapter {
     // child data in format of header title, child title
     private HashMap<String, ArrayList<UnitTestModel.Data>> _listDataChild;
 
-    public ExpandableListAdapterUnitTest(Context context, List<String> listDataHeader,
+    public  ExpandableListAdapterUnitTest(Context context, List<String> listDataHeader,
                                          HashMap<String, ArrayList<UnitTestModel.Data>> listChildData) {
         this._context = context;
         this._listDataHeader = listDataHeader;
@@ -81,6 +81,8 @@ public class ExpandableListAdapterUnitTest extends BaseExpandableListAdapter {
                 }
             }
         });
+        syllabus_linear.setVisibility(View.GONE);
+        syllabus_detail_txt.setVisibility(View.GONE);
         return convertView;
     }
 

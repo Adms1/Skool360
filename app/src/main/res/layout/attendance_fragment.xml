@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/white"
     android:orientation="vertical"
-    android:paddingTop="@dimen/_5sdp"
-    android:tag="AttendaceFragment">
+    android:paddingTop="@dimen/_5sdp">
 
     <RelativeLayout
         android:layout_width="match_parent"
