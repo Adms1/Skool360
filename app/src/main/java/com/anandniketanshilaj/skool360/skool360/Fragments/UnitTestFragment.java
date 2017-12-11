@@ -146,14 +146,12 @@ public class UnitTestFragment extends Fragment {
         listDataChild = new HashMap<String, ArrayList<UnitTestModel.Data>>();
 
         for (int i = 0; i < testdetailModels.size(); i++) {
-            listDataHeader.add(testdetailModels.get(i).getTestDate());
-
-            ArrayList<UnitTestModel.Data> rows = new ArrayList<UnitTestModel.Data>();
-            for (int j = 0; j < testdetailModels.get(i).getDataArrayList().size(); j++) {
-                rows.add(testdetailModels.get(i).getDataArrayList().get(j));
-
-            }
-            listDataChild.put(listDataHeader.get(i), rows);
+                listDataHeader.add(testdetailModels.get(i).getTestDate());
+                ArrayList<UnitTestModel.Data> rows = new ArrayList<UnitTestModel.Data>();
+                for (int j = 0; j < testdetailModels.get(i).getDataArrayList().size(); j++) {
+                    rows.add(testdetailModels.get(i).getDataArrayList().get(j));
+                }
+                listDataChild.put(listDataHeader.get(i), rows);
         }
     }
 }

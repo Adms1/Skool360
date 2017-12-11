@@ -37,8 +37,8 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
     private HashMap<String, ArrayList<HomeWorkModel.HomeWorkData>> _listDataChild;
     String FontStyle, splitFont1, splitFont2, splitFont3, splitFont4;
     TextView subject_title_txt, homework_title_txt, chapter_title_txt, lblchaptername, objective_title_txt, lblobjective, que_title_txt, lblque;
-    ImageView imgRightSign;
-    private LinearLayout chapter_linear, objective_linear, que_linear;
+   ImageView imgRightSign;
+     LinearLayout chapter_linear, objective_linear, que_linear;
     Typeface typeface;
 
     public ExpandableListAdapterHomework(Context context, List<String> listDataHeader,
@@ -64,6 +64,8 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
                              final boolean isLastChild, View convertView, ViewGroup parent) {
 
         final ArrayList<HomeWorkModel.HomeWorkData> childData = getChild(groupPosition, 0);
+
+
 
 
         if (convertView == null) {
@@ -126,7 +128,6 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
         homework_title_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (visible == true) {
                     homework_title_txt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42_down, 0);
                     chapter_linear.setVisibility(View.VISIBLE);
@@ -139,7 +140,7 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
                     que_title_txt.setVisibility(View.VISIBLE);
                     lblque.setVisibility(View.VISIBLE);
                     visible = false;
-                } else if (visible == false) {
+                } else {
                     homework_title_txt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42, 0);
                     chapter_linear.setVisibility(View.GONE);
                     objective_linear.setVisibility(View.GONE);
@@ -154,7 +155,16 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
                 }
             }
         });
-
+        homework_title_txt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42, 0);
+        chapter_linear.setVisibility(View.GONE);
+        objective_linear.setVisibility(View.GONE);
+        que_linear.setVisibility(View.GONE);
+        chapter_title_txt.setVisibility(View.GONE);
+        lblchaptername.setVisibility(View.GONE);
+        objective_title_txt.setVisibility(View.GONE);
+        lblobjective.setVisibility(View.GONE);
+        que_title_txt.setVisibility(View.GONE);
+        lblque.setVisibility(View.GONE);
         return convertView;
     }
 

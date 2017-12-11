@@ -153,7 +153,7 @@ public class HomeworkFragment extends Fragment {
     }
 
     public void getHomeworkData(final String fromDate, final String toDate) {
-        if(Utility.isNetworkConnected(mContext)) {
+        if (Utility.isNetworkConnected(mContext)) {
             progressDialog = new ProgressDialog(mContext);
             progressDialog.setMessage("Please Wait...");
             progressDialog.setCancelable(false);
@@ -164,7 +164,6 @@ public class HomeworkFragment extends Fragment {
                 public void run() {
                     try {
                         HashMap<String, String> params = new HashMap<String, String>();
-//                    params.put("StudentID", "1027");
                         params.put("StudentID", Utility.getPref(mContext, "studid"));//
                         params.put("HomeWorkFromDate", fromDate);
                         params.put("HomeWorkToDate", toDate);
@@ -192,8 +191,8 @@ public class HomeworkFragment extends Fragment {
                     }
                 }
             }).start();
-        }else {
-            Utility.ping(mContext,"Network not available");
+        } else {
+            Utility.ping(mContext, "Network not available");
         }
     }
 
@@ -209,7 +208,7 @@ public class HomeworkFragment extends Fragment {
                 rows.add(homeWorkModels.get(i).getHomeWorkDatas().get(j));
 
             }
-            listDataChild.put(listDataHeader.get(i), rows);
+                listDataChild.put(listDataHeader.get(i), rows);
         }
     }
 

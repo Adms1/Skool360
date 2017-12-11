@@ -299,8 +299,9 @@ public class DashBoardActivity extends FragmentActivity {
                     first_time_trans = false;
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
+                            .addToBackStack("HomeFragment")
                             .replace(R.id.frame_container, fragment)
-                            .addToBackStack("HomeFragment").commit();
+                            .commit();
 
                 } else {
                     fragmentManager.beginTransaction()
