@@ -21,7 +21,9 @@ import com.anandniketanshilaj.skool360.R;
 import com.anandniketanshilaj.skool360.skool360.Activities.DashBoardActivity;
 import com.anandniketanshilaj.skool360.skool360.Adapter.ExpandableListAdapterHomework;
 import com.anandniketanshilaj.skool360.skool360.AsyncTasks.GetStudHomeworkAsyncTask;
-import com.anandniketanshilaj.skool360.skool360.Models.HomeWorkModel;
+import com.anandniketanshilaj.skool360.skool360.Models.HomeWorkResponse.FinalArrayHomeWork;
+import com.anandniketanshilaj.skool360.skool360.Models.HomeWorkResponse.GetHomeWorkModel;
+import com.anandniketanshilaj.skool360.skool360.Models.HomeWorkResponse.HomeWorkInfo;
 import com.anandniketanshilaj.skool360.skool360.Utility.Utility;
 
 import java.util.ArrayList;
@@ -40,7 +42,7 @@ public class HomeworkFragment extends Fragment {
     private static String dateFinal;
     private Context mContext;
     private GetStudHomeworkAsyncTask getStudHomeworkAsyncTask = null;
-    private ArrayList<HomeWorkModel> homeWorkModels = new ArrayList<>();
+    GetHomeWorkModel getHomeWorkModelResponse;
     private ProgressDialog progressDialog = null;
     private static boolean isFromDate = false;
     private int lastExpandedPosition = -1;
@@ -48,7 +50,7 @@ public class HomeworkFragment extends Fragment {
     ExpandableListAdapterHomework listAdapter;
     ExpandableListView lvExpHomework;
     List<String> listDataHeader;
-    HashMap<String, ArrayList<HomeWorkModel.HomeWorkData>> listDataChild;
+    HashMap<String, ArrayList<HomeWorkInfo>> listDataChild;
 
 
     public HomeworkFragment() {
@@ -167,14 +169,14 @@ public class HomeworkFragment extends Fragment {
                         params.put("StudentID", Utility.getPref(mContext, "studid"));//
                         params.put("HomeWorkFromDate", fromDate);
                         params.put("HomeWorkToDate", toDate);
-                        homeWorkModels.clear();
+
                         getStudHomeworkAsyncTask = new GetStudHomeworkAsyncTask(params);
-                        homeWorkModels = getStudHomeworkAsyncTask.execute().get();
+                        getHomeWorkModelResponse = getStudHomeworkAsyncTask.execute().get();
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 progressDialog.dismiss();
-                                if (homeWorkModels.size() > 0) {
+                                if (getHomeWorkModelResponse.getFinalArray().size() > 0) {
                                     txtNoRecordsHomework.setVisibility(View.GONE);
                                     progressDialog.dismiss();
                                     prepaareList();
@@ -197,20 +199,17 @@ public class HomeworkFragment extends Fragment {
     }
 
     public void prepaareList() {
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, ArrayList<HomeWorkModel.HomeWorkData>>();
+        listDataHeader = new ArrayList<>();
+        listDataChild = new HashMap<String, ArrayList<HomeWorkInfo>>();
 
-        for (int i = 0; i < homeWorkModels.size(); i++) {
-            listDataHeader.add(homeWorkModels.get(i).getHomeWorkDate());
-
-            ArrayList<HomeWorkModel.HomeWorkData> rows = new ArrayList<HomeWorkModel.HomeWorkData>();
-            for (int j = 0; j < homeWorkModels.get(i).getHomeWorkDatas().size(); j++) {
-                rows.add(homeWorkModels.get(i).getHomeWorkDatas().get(j));
-
-            }
-                listDataChild.put(listDataHeader.get(i), rows);
+        for (int i = 0; i < getHomeWorkModelResponse.getFinalArray().size(); i++) {
+            FinalArrayHomeWork date = getHomeWorkModelResponse.getFinalArray().get(i);
+            String header = date.getHomeWorkDate();
+            listDataHeader.add(header);
+            listDataChild.put(header,date.getData());
         }
     }
+
 
     public static class SelectDateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 

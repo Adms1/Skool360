@@ -18,24 +18,7 @@ import org.w3c.dom.Text;
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
 
-    // Keep all Images in array. This is original ordering.
-    /*public Integer[] mThumbIds = {
-            R.drawable.annoucement, R.drawable.circular,
-            R.drawable.results, R.drawable.attendance,
-            R.drawable.report_card, R.drawable.exams,
-            R.drawable.appointment_request, R.drawable.imprest,
-            R.drawable.event, R.drawable.canteen,
-            R.drawable.home_work, R.drawable.class_work, R.drawable.timetable,
-            R.drawable.unit_test, R.drawable.course
-    };
 
-    public String[] mThumbNames = {"Announcements", "Circular", "Results", "Attendance", "Report Card", "Exams",
-            "Appointment Request", "Imprest", "Event", "Canteen", "Homework","Classwork", "Timetable", "Unit Test", "Course"};*/
-
-    //    change for Megha 04/09/2017
-//     R.drawable.class_work, R.drawable.annoucement, R.drawable.circular,, R.drawable.course,,"Course"
-//     "Classwork", "Announcements","Circular", R.drawable.exams,"Event",  R.drawable.event,
-//    @"Attendance",@"Homework",@"Timetable",@"Unit Test",@"Results",@"Report Card",@"Fees",@"Imprest",@"Event",@"Canteen",@"Appointment Request"
     public Integer[] mThumbIds = {
             R.drawable.attendance, R.drawable.home_work, R.drawable.timetable,
             R.drawable.unit_test, R.drawable.results, R.drawable.report_card,

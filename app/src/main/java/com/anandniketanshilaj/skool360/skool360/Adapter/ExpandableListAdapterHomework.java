@@ -8,18 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.anandniketanshilaj.skool360.R;
-import com.anandniketanshilaj.skool360.skool360.Models.HomeWorkModel;
-import com.anandniketanshilaj.skool360.skool360.Models.UnitTestModel;
-import com.anandniketanshilaj.skool360.skool360.Utility.Utility;
+import com.anandniketanshilaj.skool360.skool360.Models.HomeWorkResponse.HomeWorkInfo;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,22 +29,20 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
     boolean visible = true;
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
-    private HashMap<String, ArrayList<HomeWorkModel.HomeWorkData>> _listDataChild;
+    private HashMap<String, ArrayList<HomeWorkInfo>> _listDataChild;
     String FontStyle, splitFont1, splitFont2, splitFont3, splitFont4;
-    TextView subject_title_txt, homework_title_txt, chapter_title_txt, lblchaptername, objective_title_txt, lblobjective, que_title_txt, lblque;
-   ImageView imgRightSign;
-     LinearLayout chapter_linear, objective_linear, que_linear;
+    TextView homework_title_txt, subject_title_txt, chapter_title_txt, lblchaptername, objective_title_txt, lblobjective, que_title_txt, lblque;
     Typeface typeface;
 
     public ExpandableListAdapterHomework(Context context, List<String> listDataHeader,
-                                         HashMap<String, ArrayList<HomeWorkModel.HomeWorkData>> listChildData) {
+                                         HashMap<String, ArrayList<HomeWorkInfo>> listChildData) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
     }
 
     @Override
-    public ArrayList<HomeWorkModel.HomeWorkData> getChild(int groupPosition, int childPosititon) {
+    public ArrayList<HomeWorkInfo> getChild(int groupPosition, int childPosititon) {
         return this._listDataChild.get(this._listDataHeader.get(groupPosition));
     }
 
@@ -63,40 +56,49 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              final boolean isLastChild, View convertView, ViewGroup parent) {
 
-        final ArrayList<HomeWorkModel.HomeWorkData> childData = getChild(groupPosition, 0);
-
-
-
+        final ArrayList<HomeWorkInfo> childData = getChild(groupPosition, 0);
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.list_item_home_work, null);
+            convertView = infalInflater.inflate(R.layout.list_item_homework, null);
         }
+        final LinearLayout chapter_linear = (LinearLayout) convertView.findViewById(R.id.chapter_linear);
+        final LinearLayout objective_linear = (LinearLayout) convertView.findViewById(R.id.objective_linear);
+        final LinearLayout que_linear = (LinearLayout) convertView.findViewById(R.id.que_linear);
 
         subject_title_txt = (TextView) convertView.findViewById(R.id.subject_title_txt);
         homework_title_txt = (TextView) convertView.findViewById(R.id.homework_title_txt);
-        imgRightSign = (ImageView) convertView.findViewById(R.id.imgRightSign);
         chapter_title_txt = (TextView) convertView.findViewById(R.id.chapter_title_txt);
         lblchaptername = (TextView) convertView.findViewById(R.id.lblchaptername);
         objective_title_txt = (TextView) convertView.findViewById(R.id.objective_title_txt);
         lblobjective = (TextView) convertView.findViewById(R.id.lblobjective);
         que_title_txt = (TextView) convertView.findViewById(R.id.que_title_txt);
         lblque = (TextView) convertView.findViewById(R.id.lblque);
-        chapter_linear = (LinearLayout) convertView.findViewById(R.id.chapter_linear);
-        objective_linear = (LinearLayout) convertView.findViewById(R.id.objective_linear);
-        que_linear = (LinearLayout) convertView.findViewById(R.id.que_linear);
 
-        subject_title_txt.setText(Html.fromHtml(childData.get(childPosition).getSubject() + ":"));
+
+        subject_title_txt.setText(childData.get(childPosition).getSubject() + ":");
         chapter_title_txt.setText("Chapter Name :");
         objective_title_txt.setText("Objective :");
         que_title_txt.setText(Html.fromHtml("Assessment\nQuestion :"));
+
         FontStyle = "";
         splitFont1 = "";
         splitFont2 = "";
         splitFont3 = "";
+        splitFont4 = "";
         FontStyle = childData.get(childPosition).getFont();
-
+        String que = "", objective = "";
+//        if (childData.get(childPosition).getAssessmentQue().contains("&nbsp;")) {
+//            que = childData.get(childPosition).getAssessmentQue().replace("&nbsp;", "").trim();
+//        } else {
+//            que = childData.get(childPosition).getAssessmentQue();
+//        }
+//        if (childData.get(childPosition).getObjective().contains("<p>&nbsp;/p>")) {
+//            objective = childData.get(childPosition).getObjective().replace("&nbsp;", "").trim();
+//        } else {
+//            objective = childData.get(childPosition).getObjective();
+//        }
         if (!FontStyle.equalsIgnoreCase("-|-|-|-")) {
             String[] splitFontStyle = FontStyle.split("\\|");
             Log.d("SplitFOnt", splitFontStyle[0]);
@@ -110,7 +112,7 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
             SetLanguageObjective(splitFont3);
             SetLanguageAssessmentQue(splitFont4);
 
-            homework_title_txt.setText(Html.fromHtml(childData.get(childPosition).getHomework()));
+            homework_title_txt.setText(Html.fromHtml(childData.get(childPosition).getHomeWork()));
             lblchaptername.setText(Html.fromHtml(childData.get(childPosition).getChapterName()));
             lblobjective.setText(Html.fromHtml(childData.get(childPosition).getObjective()));
             lblque.setText(Html.fromHtml(childData.get(childPosition).getAssessmentQue()));
@@ -120,7 +122,7 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
             lblchaptername.setTypeface(typeface);
             lblobjective.setTypeface(typeface);
             lblque.setTypeface(typeface);
-            homework_title_txt.setText(Html.fromHtml(childData.get(childPosition).getHomework()));
+            homework_title_txt.setText(Html.fromHtml(childData.get(childPosition).getHomeWork()));
             lblchaptername.setText(Html.fromHtml(childData.get(childPosition).getChapterName()));
             lblobjective.setText(Html.fromHtml(childData.get(childPosition).getObjective()));
             lblque.setText(Html.fromHtml(childData.get(childPosition).getAssessmentQue()));
@@ -133,24 +135,12 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
                     chapter_linear.setVisibility(View.VISIBLE);
                     objective_linear.setVisibility(View.VISIBLE);
                     que_linear.setVisibility(View.VISIBLE);
-                    chapter_title_txt.setVisibility(View.VISIBLE);
-                    lblchaptername.setVisibility(View.VISIBLE);
-                    objective_title_txt.setVisibility(View.VISIBLE);
-                    lblobjective.setVisibility(View.VISIBLE);
-                    que_title_txt.setVisibility(View.VISIBLE);
-                    lblque.setVisibility(View.VISIBLE);
                     visible = false;
                 } else {
                     homework_title_txt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42, 0);
                     chapter_linear.setVisibility(View.GONE);
                     objective_linear.setVisibility(View.GONE);
                     que_linear.setVisibility(View.GONE);
-                    chapter_title_txt.setVisibility(View.GONE);
-                    lblchaptername.setVisibility(View.GONE);
-                    objective_title_txt.setVisibility(View.GONE);
-                    lblobjective.setVisibility(View.GONE);
-                    que_title_txt.setVisibility(View.GONE);
-                    lblque.setVisibility(View.GONE);
                     visible = true;
                 }
             }
@@ -159,12 +149,7 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
         chapter_linear.setVisibility(View.GONE);
         objective_linear.setVisibility(View.GONE);
         que_linear.setVisibility(View.GONE);
-        chapter_title_txt.setVisibility(View.GONE);
-        lblchaptername.setVisibility(View.GONE);
-        objective_title_txt.setVisibility(View.GONE);
-        lblobjective.setVisibility(View.GONE);
-        que_title_txt.setVisibility(View.GONE);
-        lblque.setVisibility(View.GONE);
+
         return convertView;
     }
 

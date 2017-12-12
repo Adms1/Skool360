@@ -1,34 +1,26 @@
 package com.anandniketanshilaj.skool360.skool360.Fragments;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.anandniketanshilaj.skool360.R;
 import com.anandniketanshilaj.skool360.skool360.Activities.DashBoardActivity;
-import com.anandniketanshilaj.skool360.skool360.Adapter.ExpandableListAdapter;
 import com.anandniketanshilaj.skool360.skool360.Adapter.ExpandableListAdapterTimeTable;
-import com.anandniketanshilaj.skool360.skool360.AsyncTasks.GetStudHomeworkAsyncTask;
 import com.anandniketanshilaj.skool360.skool360.AsyncTasks.GetTimetableAsyncTask;
-import com.anandniketanshilaj.skool360.skool360.Models.HomeWorkModel;
 import com.anandniketanshilaj.skool360.skool360.Models.TimetableModel;
 import com.anandniketanshilaj.skool360.skool360.Utility.Utility;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
