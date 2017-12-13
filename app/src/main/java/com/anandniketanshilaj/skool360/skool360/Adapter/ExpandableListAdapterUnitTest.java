@@ -9,6 +9,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anandniketanshilaj.skool360.R;
 import com.anandniketanshilaj.skool360.skool360.Models.UnitTestModel;
@@ -28,8 +29,9 @@ public class ExpandableListAdapterUnitTest extends BaseExpandableListAdapter {
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<String, ArrayList<UnitTestModel.Data>> _listDataChild;
+  
 
-    public  ExpandableListAdapterUnitTest(Context context, List<String> listDataHeader,
+    public ExpandableListAdapterUnitTest(Context context, List<String> listDataHeader,
                                          HashMap<String, ArrayList<UnitTestModel.Data>> listChildData) {
         this._context = context;
         this._listDataHeader = listDataHeader;
@@ -54,7 +56,6 @@ public class ExpandableListAdapterUnitTest extends BaseExpandableListAdapter {
         final LinearLayout syllabus_linear;
         final TextView subject_name_txt, syllabus_txt, syllabus_detail_txt;
 
-
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.list_item_unit_test, null);
@@ -67,6 +68,7 @@ public class ExpandableListAdapterUnitTest extends BaseExpandableListAdapter {
 
         subject_name_txt.setText(childData.get(childPosition).getSubject());
         syllabus_detail_txt.setText(childData.get(childPosition).getDetail());
+
         syllabus_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
