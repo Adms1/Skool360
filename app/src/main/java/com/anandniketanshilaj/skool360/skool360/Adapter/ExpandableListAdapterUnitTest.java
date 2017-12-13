@@ -29,7 +29,7 @@ public class ExpandableListAdapterUnitTest extends BaseExpandableListAdapter {
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<String, ArrayList<UnitTestModel.Data>> _listDataChild;
-  
+
 
     public ExpandableListAdapterUnitTest(Context context, List<String> listDataHeader,
                                          HashMap<String, ArrayList<UnitTestModel.Data>> listChildData) {
