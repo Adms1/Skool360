@@ -196,9 +196,9 @@ public class InboxFragment extends Fragment {
         listDataChild = new HashMap<String, List<FinalArrayInbox>>();
 
         for (int j = 0; j < response.getFinalArray().size(); j++) {
-            listDataHeader.add(response.getFinalArray().get(j).getUserName() + "|" +
-                    response.getFinalArray().get(j).getMeetingDate() + "|" +
-                    response.getFinalArray().get(j).getSubjectLine());
+            listDataHeader.add(response.getFinalArray().get(j).getUserName().trim() + "|" +
+                    response.getFinalArray().get(j).getMeetingDate().trim() + "|" +
+                    response.getFinalArray().get(j).getSubjectLine().trim());
 
             ArrayList<FinalArrayInbox> rows = new ArrayList<FinalArrayInbox>();
             rows.add(response.getFinalArray().get(j));

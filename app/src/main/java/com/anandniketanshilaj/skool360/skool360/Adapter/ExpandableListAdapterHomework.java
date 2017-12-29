@@ -33,6 +33,7 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
     String FontStyle, splitFont1, splitFont2, splitFont3, splitFont4;
     TextView homework_title_txt, subject_title_txt, chapter_title_txt, lblchaptername, objective_title_txt, lblobjective, que_title_txt, lblque;
     Typeface typeface;
+//    ImageView imageView;
 
     public ExpandableListAdapterHomework(Context context, List<String> listDataHeader,
                                          HashMap<String, ArrayList<HomeWorkInfo>> listChildData) {
@@ -66,6 +67,7 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
         final LinearLayout chapter_linear = (LinearLayout) convertView.findViewById(R.id.chapter_linear);
         final LinearLayout objective_linear = (LinearLayout) convertView.findViewById(R.id.objective_linear);
         final LinearLayout que_linear = (LinearLayout) convertView.findViewById(R.id.que_linear);
+        final LinearLayout homework_linear = (LinearLayout) convertView.findViewById(R.id.homework_linear);
 
         subject_title_txt = (TextView) convertView.findViewById(R.id.subject_title_txt);
         homework_title_txt = (TextView) convertView.findViewById(R.id.homework_title_txt);
@@ -75,9 +77,9 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
         lblobjective = (TextView) convertView.findViewById(R.id.lblobjective);
         que_title_txt = (TextView) convertView.findViewById(R.id.que_title_txt);
         lblque = (TextView) convertView.findViewById(R.id.lblque);
+        final ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
 
 
-        subject_title_txt.setText(childData.get(childPosition).getSubject() + ":");
         chapter_title_txt.setText("Chapter Name :");
         objective_title_txt.setText("Objective :");
         que_title_txt.setText(Html.fromHtml("Assessment\nQuestion :"));
@@ -88,17 +90,7 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
         splitFont3 = "";
         splitFont4 = "";
         FontStyle = childData.get(childPosition).getFont();
-        String que = "", objective = "";
-//        if (childData.get(childPosition).getAssessmentQue().contains("&nbsp;")) {
-//            que = childData.get(childPosition).getAssessmentQue().replace("&nbsp;", "").trim();
-//        } else {
-//            que = childData.get(childPosition).getAssessmentQue();
-//        }
-//        if (childData.get(childPosition).getObjective().contains("<p>&nbsp;/p>")) {
-//            objective = childData.get(childPosition).getObjective().replace("&nbsp;", "").trim();
-//        } else {
-//            objective = childData.get(childPosition).getObjective();
-//        }
+
         if (!FontStyle.equalsIgnoreCase("-|-|-|-")) {
             String[] splitFontStyle = FontStyle.split("\\|");
             Log.d("SplitFOnt", splitFontStyle[0]);
@@ -107,37 +99,42 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
             splitFont3 = splitFontStyle[2].toString();
             splitFont4 = splitFontStyle[3].toString();
 
+
             SetLanguageHomework(splitFont1);
             SetLanguageChapterName(splitFont2);
             SetLanguageObjective(splitFont3);
             SetLanguageAssessmentQue(splitFont4);
-
-            homework_title_txt.setText(Html.fromHtml(childData.get(childPosition).getHomeWork()));
-            lblchaptername.setText(Html.fromHtml(childData.get(childPosition).getChapterName()));
-            lblobjective.setText(Html.fromHtml(childData.get(childPosition).getObjective()));
-            lblque.setText(Html.fromHtml(childData.get(childPosition).getAssessmentQue()));
+            subject_title_txt.setText(Html.fromHtml(childData.get(childPosition).getSubject().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim()));
+            homework_title_txt.setText(Html.fromHtml(childData.get(childPosition).getHomeWork().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim()));
+            lblchaptername.setText(Html.fromHtml(childData.get(childPosition).getChapterName().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim()));
+            lblobjective.setText(childData.get(childPosition).getObjective().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim());
+            lblque.setText(Html.fromHtml(childData.get(childPosition).getAssessmentQue().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim()));
         } else {
             typeface = Typeface.createFromAsset(_context.getAssets(), "Fonts/arial.ttf");
             homework_title_txt.setTypeface(typeface);
             lblchaptername.setTypeface(typeface);
             lblobjective.setTypeface(typeface);
             lblque.setTypeface(typeface);
-            homework_title_txt.setText(Html.fromHtml(childData.get(childPosition).getHomeWork()));
-            lblchaptername.setText(Html.fromHtml(childData.get(childPosition).getChapterName()));
-            lblobjective.setText(Html.fromHtml(childData.get(childPosition).getObjective()));
-            lblque.setText(Html.fromHtml(childData.get(childPosition).getAssessmentQue()));
+            subject_title_txt.setText(Html.fromHtml(childData.get(childPosition).getSubject().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim()));
+            homework_title_txt.setText(Html.fromHtml(childData.get(childPosition).getHomeWork().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim()));
+            lblchaptername.setText(Html.fromHtml(childData.get(childPosition).getChapterName().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim()));
+            lblobjective.setText(Html.fromHtml(childData.get(childPosition).getObjective().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim()));
+            lblque.setText(Html.fromHtml(childData.get(childPosition).getAssessmentQue().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim()));
         }
-        homework_title_txt.setOnClickListener(new View.OnClickListener() {
+        subject_title_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (visible == true) {
-                    homework_title_txt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42_down, 0);
+                    imageView.setBackgroundResource(R.drawable.arrow_1_42_down);
+                    homework_linear.setVisibility(View.VISIBLE);
                     chapter_linear.setVisibility(View.VISIBLE);
                     objective_linear.setVisibility(View.VISIBLE);
                     que_linear.setVisibility(View.VISIBLE);
                     visible = false;
                 } else {
-                    homework_title_txt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42, 0);
+//                    imageView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42, 0);
+                    imageView.setBackgroundResource(R.drawable.arrow_1_42);
+                    homework_linear.setVisibility(View.GONE);
                     chapter_linear.setVisibility(View.GONE);
                     objective_linear.setVisibility(View.GONE);
                     que_linear.setVisibility(View.GONE);
@@ -145,7 +142,30 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
                 }
             }
         });
-        homework_title_txt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42, 0);
+        imageView.setBackgroundResource(R.drawable.arrow_1_42);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (visible == true) {
+                    imageView.setBackgroundResource(R.drawable.arrow_1_42_down);
+                    homework_linear.setVisibility(View.VISIBLE);
+                    chapter_linear.setVisibility(View.VISIBLE);
+                    objective_linear.setVisibility(View.VISIBLE);
+                    que_linear.setVisibility(View.VISIBLE);
+                    visible = false;
+                } else {
+//                    imageView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42, 0);
+                    imageView.setBackgroundResource(R.drawable.arrow_1_42);
+                    homework_linear.setVisibility(View.GONE);
+                    chapter_linear.setVisibility(View.GONE);
+                    objective_linear.setVisibility(View.GONE);
+                    que_linear.setVisibility(View.GONE);
+                    visible = true;
+                }
+            }
+        });
+        imageView.setBackgroundResource(R.drawable.arrow_1_42);
+        homework_linear.setVisibility(View.GONE);
         chapter_linear.setVisibility(View.GONE);
         objective_linear.setVisibility(View.GONE);
         que_linear.setVisibility(View.GONE);
@@ -185,9 +205,9 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
         }
 
         if (isExpanded) {
-            convertView.setBackgroundResource(R.drawable.homework_selected_bg);
+            convertView.setBackgroundResource(R.color.orange);
         } else {
-            convertView.setBackgroundResource(R.drawable.homework_subject_bg);
+            convertView.setBackgroundResource(R.color.gray);
         }
 
 

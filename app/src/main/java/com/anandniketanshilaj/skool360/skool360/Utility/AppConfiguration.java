@@ -12,6 +12,7 @@ public class AppConfiguration {
     static Domain domain = Domain.LIVE;//only Change this for changing environment
 
 
+
     public static String getUrl(String methodName) {
         String url = "";
         switch (domain) {
@@ -28,8 +29,9 @@ public class AppConfiguration {
     }
 
     //Local
-    public static String DOMAIN_LOCAL = "http://192.168.1.10:8085/MobileApp_Service.asmx/";
-    public static String DOMAIN_LIVE = "http://103.8.216.132/MobileApp_Service.asmx/";
+    public static String DOMAIN_LOCAL = "http://192.168.1.15:8085/MobileApp_Service.asmx/";
+//    public static String DOMAIN_LIVE = "http://103.8.216.132/MobileApp_Service.asmx/";//use for client
+    public static String DOMAIN_LIVE = "http://192.168.1.15:8085/MobileApp_Service.asmx/";//use for office only
 
     public static String StudentLogin = "StudentLogin";
     public static String GetUserProfile = "GetUserProfile";

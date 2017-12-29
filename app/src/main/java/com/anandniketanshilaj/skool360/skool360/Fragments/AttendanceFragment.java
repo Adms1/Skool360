@@ -34,6 +34,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -79,6 +80,8 @@ public class AttendanceFragment extends Fragment {
         txtNoRecordsHomework = (TextView) rootView.findViewById(R.id.txtNoRecordsHomework);
         rlCalender = (RelativeLayout) rootView.findViewById(R.id.rlCalender);
         spinMonth = (Spinner) rootView.findViewById(R.id.spinMonth);
+        Collections.sort(year1);
+        System.out.println("Sorted ArrayList in Java - Ascending order : " + year1);
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");
             popup.setAccessible(true);

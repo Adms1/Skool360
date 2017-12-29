@@ -42,7 +42,7 @@ public class ProfileFragment extends Fragment {
     private Button btnMenu, btnPersonalDetail, btnEducationalDetail, btnEditProfile, btnUpdate, btnBackProfile;
     private TextView txtName, txtDOB, txtAge, txtGender, txtBloodGroup, txtBirthPlace, txtFatherName, txtFatherPhNo, txtFatherEmail,
             txtMotherName, txtMotherPhNo, txtMotherEmail, txtAddress, txtCity, txtTransKMs, txtTrasPickTime, txtTrasDropTime,
-            txtGRNO, txtStandard, txtClass, txtUserName, txtPassword, txtEdit, studName;
+            txtGRNO, txtStandard, txtClass, txtUserName, txtPassword, txtEdit, studName,txtsmsno;
     private View viewShadow1, viewShadow2, viewShadow3;
     private CircleImageView profile_image;
     private View includePersonalDetail, includeEducationalDetail, includeEditProfileDetail;
@@ -98,6 +98,7 @@ public class ProfileFragment extends Fragment {
         txtMotherName = (TextView) includePersonalDetail.findViewById(R.id.txtMotherName);
         txtMotherPhNo = (TextView) includePersonalDetail.findViewById(R.id.txtMotherPhNo);
         txtMotherEmail = (TextView) includePersonalDetail.findViewById(R.id.txtMotherEmail);
+        txtsmsno = (TextView) includePersonalDetail.findViewById(R.id.txtsmsno);
         txtAddress = (TextView) includePersonalDetail.findViewById(R.id.txtAddress);
         txtCity = (TextView) includePersonalDetail.findViewById(R.id.txtCity);
         txtTransKMs = (TextView) includePersonalDetail.findViewById(R.id.txtTransKMs);
@@ -299,6 +300,7 @@ public class ProfileFragment extends Fragment {
                                 txtMotherName.setText(studDetailList.get(0).getMotherName());
                                 txtMotherPhNo.setText(studDetailList.get(0).getMotherMobile());
                                 txtMotherEmail.setText(studDetailList.get(0).getMotherEmail());
+                                txtsmsno.setText(studDetailList.get(0).getSMSNumber());
                                 txtAddress.setText(studDetailList.get(0).getAddress());
                                 txtCity.setText(studDetailList.get(0).getCity());
                                 txtTransKMs.setText(studDetailList.get(0).getTransport_KM());

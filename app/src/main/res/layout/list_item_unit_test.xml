@@ -45,24 +45,14 @@
         <LinearLayout
             android:id="@+id/syllabus_linear"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_70sdp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_5sdp"
             android:layout_marginLeft="@dimen/_3sdp"
             android:layout_marginRight="@dimen/_4sdp"
-            android:background="@drawable/box_11"
-            android:orientation="horizontal"
+            android:background="@color/linearbg"
+            android:orientation="vertical"
             android:visibility="gone">
 
-            <TextView
-                android:id="@+id/syllabus_detail_txt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:textAlignment="textStart"
-                android:textSize="@dimen/_9sdp"
-                android:text="hi"
-                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

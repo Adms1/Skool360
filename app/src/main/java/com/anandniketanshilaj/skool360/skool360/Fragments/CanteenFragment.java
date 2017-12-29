@@ -32,6 +32,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -77,6 +78,8 @@ public class CanteenFragment extends Fragment {
         listCanteen = (ListView) rootView.findViewById(R.id.listCanteen);
 
         spinMonth = (Spinner) rootView.findViewById(R.id.spinMonth);
+        Collections.sort(year1);
+        System.out.println("Sorted ArrayList in Java - Ascending order : " + year1);
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");
             popup.setAccessible(true);
@@ -88,7 +91,7 @@ public class CanteenFragment extends Fragment {
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
-        ArrayAdapter<String> adapterMonth = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, getResources().getStringArray(R.array.month));
+        ArrayAdapter<String> adapterMonth = new ArrayAdapter<String>(mContext,R.layout.spinner_layout, getResources().getStringArray(R.array.month));
         spinMonth.setAdapter(adapterMonth);
 
         spinYear = (Spinner) rootView.findViewById(R.id.spinYear);
@@ -103,7 +106,7 @@ public class CanteenFragment extends Fragment {
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
-        ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, year1);
+        ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(mContext,R.layout.spinner_layout, year1);
         spinYear.setAdapter(adapterYear);
 
         final Calendar calendar = Calendar.getInstance();
@@ -117,11 +120,11 @@ public class CanteenFragment extends Fragment {
         }
         spinMonth.setSelection(months.indexOf(months.get(mm - 1)));
 
-        ArrayList<String> years2 = new ArrayList<>();
+        ArrayList<String> year2 = new ArrayList<>();
         for (int i = 0; i < year1.size(); i++) {
-            years2.add(year1.get(i));
+            year2.add(year1.get(i));
         }
-        spinYear.setSelection(years2.indexOf(String.valueOf(yy)));
+        spinYear.setSelection(year2.indexOf(String.valueOf(yy)));
 
         fromDate = "1" + "/" + mm + "/" + yy;
         toDate = getToDate(fromDate);
