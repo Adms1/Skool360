@@ -77,7 +77,8 @@
             android:text="Remember Credentials"
             android:textColor="@color/design_change_d2"
             android:textSize="@dimen/_11sdp"
-            android:layout_marginTop="@dimen/_5sdp"/>
+            android:layout_marginTop="@dimen/_5sdp"
+            android:button="@drawable/check_uncheck"/>
 
         <Button
             android:id="@+id/btnLogin"

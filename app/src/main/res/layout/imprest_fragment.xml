@@ -165,7 +165,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_27sdp"
                 android:layout_weight="1.2"
-                android:padding="@dimen/_5sdp"
+                android:paddingTop="@dimen/_1sdp"
                 android:singleLine="true"
                 android:text=""
                 android:layout_marginLeft="@dimen/_1sdp"
