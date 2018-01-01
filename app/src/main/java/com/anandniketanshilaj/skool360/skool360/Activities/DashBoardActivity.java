@@ -319,8 +319,8 @@ public class DashBoardActivity extends FragmentActivity {
                     first_time_trans = false;
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
-                            .addToBackStack("HomeFragment")
                             .replace(R.id.frame_container, fragment)
+                            .addToBackStack("HomeFragment")
                             .commit();
 
                 } else {
@@ -364,6 +364,8 @@ public class DashBoardActivity extends FragmentActivity {
     @Override
     public void onBackPressed() {
         displayView(0);
+
+//
 //        if (getFragmentManager().getBackStackEntryCount() > 0) {
 //            List<Fragment> fragments = getSupportFragmentManager().getFragments();
 //            if (fragments != null) {
@@ -374,6 +376,8 @@ public class DashBoardActivity extends FragmentActivity {
 //                    }
 //                }
 //            }
+//Log.d("stackcount",""+getFragmentManager().getBackStackEntryCount());
+//            getFragmentManager().popBackStack();
 //        } else {
 //            Intent intent = new Intent(Intent.ACTION_MAIN);
 //            intent.addCategory(Intent.CATEGORY_HOME);
@@ -381,6 +385,8 @@ public class DashBoardActivity extends FragmentActivity {
 //            startActivity(intent);
 //            finish();
 //            System.exit(0);
+////            super.onBackPressed();
+//
 //        }
     }
 }

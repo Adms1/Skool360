@@ -2,37 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="@dimen/_30sdp"
-    android:background="@drawable/back_line"
+    android:background="@drawable/shadow_box"
     android:orientation="horizontal"
     android:padding="@dimen/_3sdp"
-    android:weightSum="2">
+    android:weightSum="3">
 
     <TextView
         android:id="@+id/lblPayDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_weight="1.3"
         android:gravity="center"
         android:singleLine="true"
-        android:layout_marginTop="@dimen/_3sdp"
         android:text="PayDate"
         android:textAlignment="textStart"
-        android:textStyle="normal"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/_11sdp" />
+        android:textSize="@dimen/_10sdp"
+        android:textStyle="normal" />
 
     <TextView
         android:id="@+id/lblPaid"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableRight="@drawable/arrow_1_42"
         android:layout_marginTop="@dimen/_3sdp"
+        android:layout_weight="1.3"
         android:gravity="right"
         android:singleLine="true"
         android:text="Paid"
-        android:textStyle="normal"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/_11sdp" />
+        android:textSize="@dimen/_10sdp"
+        android:textStyle="normal" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"/>
 </LinearLayout>

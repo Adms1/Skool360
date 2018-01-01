@@ -40,7 +40,7 @@ public class PaymentFragment extends Fragment {
     private TextView txtNoRecordsUnitTest, previous_balance_term1_txt, previous_balance_term2_txt,
             tutionfees_term2_txt, tutionfees_term1_txt, transportfees_term1_txt, transportfees_term2_txt,
             imprest_term1_txt, imprest_term2_txt, latefees_term1_txt, latefees_term2_txt, totalpayablefees_term1_txt,
-            totalpayablefees_term2_txt, paidfees_term1_txt, paidfees_term2_txt, paynow_term1_txt, paynow_term2_txt,
+            totalpayablefees_term2_txt, paidfees_term1_txt, paidfees_term2_txt, paynow_term1_txt, paynow_term2_txt, payment_history,
             admission_fees_term1_txt, admission_fees_term2_txt, caution_fees_term1_txt, caution_fees_term2_txt, discount_fee_term1_txt, discount_fee_term2_txt,
             balance_term1_txt, balance_term2_txt;
     private Context mContext;
@@ -108,6 +108,7 @@ public class PaymentFragment extends Fragment {
         caution_fees_term2_txt = (TextView) rootView.findViewById(R.id.caution_fees_term2_txt);
         discount_fee_term1_txt = (TextView) rootView.findViewById(R.id.discount_fee_term1_txt);
         discount_fee_term2_txt = (TextView) rootView.findViewById(R.id.discount_fee_term2_txt);
+        payment_history = (TextView) rootView.findViewById(R.id.payment_history);
     }
 
     public void setListners() {
@@ -143,7 +144,7 @@ public class PaymentFragment extends Fragment {
     }
 
     public void getFeesData() {
-        if(Utility.isNetworkConnected(mContext)) {
+        if (Utility.isNetworkConnected(mContext)) {
             progressDialog = new ProgressDialog(mContext);
             progressDialog.setMessage("Please Wait...");
             progressDialog.setCancelable(false);
@@ -177,8 +178,8 @@ public class PaymentFragment extends Fragment {
                     }
                 }
             }).start();
-        }else{
-            Utility.ping(mContext,"Network not available");
+        } else {
+            Utility.ping(mContext, "Network not available");
         }
     }
 
@@ -193,31 +194,31 @@ public class PaymentFragment extends Fragment {
         }
         String buttonvalue1 = null, buttonvalue2 = null;
         for (int k = 0; k < rows.size(); k++) {
-            previous_balance_term1_txt.setText("₹" + " " +rows.get(0).getPreviousBalance());
-            tutionfees_term1_txt.setText("₹" + " " +rows.get(0).getTutionFees());
-            transportfees_term1_txt.setText("₹" + " " +rows.get(0).getTransportFees());
-            imprest_term1_txt.setText("₹" + " " +rows.get(0).getImprest());
-            latefees_term1_txt.setText("₹" + " " +rows.get(0).getLateFees());
-            totalpayablefees_term1_txt.setText("₹" + " " +rows.get(0).getTotalPayableFees());
-            paidfees_term1_txt.setText("₹" + " " +rows.get(0).getPaidFees());
-            balance_term1_txt.setText("₹" + " " +rows.get(0).getTotalFees());
+            previous_balance_term1_txt.setText("₹" + " " + rows.get(0).getPreviousBalance());
+            tutionfees_term1_txt.setText("₹" + " " + rows.get(0).getTutionFees());
+            transportfees_term1_txt.setText("₹" + " " + rows.get(0).getTransportFees());
+            imprest_term1_txt.setText("₹" + " " + rows.get(0).getImprest());
+            latefees_term1_txt.setText("₹" + " " + rows.get(0).getLateFees());
+            totalpayablefees_term1_txt.setText("₹" + " " + rows.get(0).getTotalPayableFees());
+            paidfees_term1_txt.setText("₹" + " " + rows.get(0).getPaidFees());
+            balance_term1_txt.setText("₹" + " " + rows.get(0).getTotalFees());
             buttonvalue1 = rows.get(0).getButtonVisiblity();
-            admission_fees_term1_txt.setText("₹" + " " +rows.get(0).getAdmissionFees());
-            caution_fees_term1_txt.setText("₹" + " " +rows.get(0).getCautionFees());
-            discount_fee_term1_txt.setText("₹" + " " +rows.get(0).getDiscount());
+            admission_fees_term1_txt.setText("₹" + " " + rows.get(0).getAdmissionFees());
+            caution_fees_term1_txt.setText("₹" + " " + rows.get(0).getCautionFees());
+            discount_fee_term1_txt.setText("₹" + " " + rows.get(0).getDiscount());
 
-            previous_balance_term2_txt.setText("₹" + " " +rows.get(1).getPreviousBalance());
-            tutionfees_term2_txt.setText("₹" + " " +rows.get(1).getTutionFees());
-            transportfees_term2_txt.setText("₹" + " " +rows.get(1).getTransportFees());
-            imprest_term2_txt.setText("₹" + " " +rows.get(1).getImprest());
-            latefees_term2_txt.setText("₹" + " " +rows.get(1).getLateFees());
-            totalpayablefees_term2_txt.setText("₹" + " " +rows.get(1).getTotalPayableFees());
-            paidfees_term2_txt.setText("₹" + " " +rows.get(1).getPaidFees());
-            balance_term2_txt.setText("₹" + " " +rows.get(1).getTotalFees());
+            previous_balance_term2_txt.setText("₹" + " " + rows.get(1).getPreviousBalance());
+            tutionfees_term2_txt.setText("₹" + " " + rows.get(1).getTutionFees());
+            transportfees_term2_txt.setText("₹" + " " + rows.get(1).getTransportFees());
+            imprest_term2_txt.setText("₹" + " " + rows.get(1).getImprest());
+            latefees_term2_txt.setText("₹" + " " + rows.get(1).getLateFees());
+            totalpayablefees_term2_txt.setText("₹" + " " + rows.get(1).getTotalPayableFees());
+            paidfees_term2_txt.setText("₹" + " " + rows.get(1).getPaidFees());
+            balance_term2_txt.setText("₹" + " " + rows.get(1).getTotalFees());
             buttonvalue2 = rows.get(1).getButtonVisiblity();
-            admission_fees_term2_txt.setText("₹" + " " +rows.get(1).getAdmissionFees());
-            caution_fees_term2_txt.setText("₹" + " " +rows.get(1).getCautionFees());
-            discount_fee_term2_txt.setText("₹" + " " +rows.get(1).getDiscount());
+            admission_fees_term2_txt.setText("₹" + " " + rows.get(1).getAdmissionFees());
+            caution_fees_term2_txt.setText("₹" + " " + rows.get(1).getCautionFees());
+            discount_fee_term2_txt.setText("₹" + " " + rows.get(1).getDiscount());
         }
 
     }
@@ -226,7 +227,7 @@ public class PaymentFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                if(Utility.isNetworkConnected(mContext)) {
+                if (Utility.isNetworkConnected(mContext)) {
                     try {
 
                         HashMap<String, String> params = new HashMap<String, String>();
@@ -239,19 +240,21 @@ public class PaymentFragment extends Fragment {
                             public void run() {
                                 if (paymentdetailsModel.size() > 0) {
                                     txtNoRecordsUnitTest.setVisibility(View.GONE);
+                                    payment_history.setVisibility(View.VISIBLE);
                                     prepaareList();
                                     expandableListAdapterPayment = new ExpandableListAdapterPayment(getActivity(), listDataHeader, listDataChildPayment);
                                     lvExpPayment.setAdapter(expandableListAdapterPayment);
                                 } else {
 //                                    txtNoRecordsUnitTest.setVisibility(View.VISIBLE);
+                                    payment_history.setVisibility(View.GONE);
                                 }
                             }
                         });
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }else {
-                    Utility.ping(mContext,"Network not available");
+                } else {
+                    Utility.ping(mContext, "Network not available");
                 }
             }
         }).start();

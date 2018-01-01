@@ -86,6 +86,7 @@
             android:text="Filter"
             android:textColor="@android:color/white"
             android:textSize="@dimen/_11sdp"
+            android:textAllCaps="false"
             android:textStyle="normal" />
 
         <TextView

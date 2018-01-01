@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.anandniketanshilaj.skool360.R;
@@ -111,7 +112,7 @@ public class ExpandableListAdapterPayment extends BaseExpandableListAdapter {
         String[] headerTemp = getGroup(groupPosition).toString().split("\\|");
         String headerTitle = headerTemp[0];
         String headerTitle1 = headerTemp[1];
-        Log.d("positon", "" + headerTitle+""+headerTitle1);
+        Log.d("positon", "" + headerTitle + "" + headerTitle1);
 
 
         if (convertView == null) {
@@ -125,11 +126,12 @@ public class ExpandableListAdapterPayment extends BaseExpandableListAdapter {
         lblPayDate.setText(headerTitle);
         lblPaid.setTypeface(null, Typeface.BOLD);
         lblPaid.setText(headerTitle1);
+        final ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
 
-        if (isExpanded){
-            lblPaid.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42_down, 0);
-        }else{
-            lblPaid.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42, 0);
+        if (isExpanded) {
+            imageView.setBackgroundResource( R.drawable.arrow_1_42_down);
+        } else {
+            imageView.setBackgroundResource(R.drawable.arrow_1_42);
         }
 
 

@@ -80,9 +80,9 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
         final ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
 
 
-        chapter_title_txt.setText("Chapter Name :");
-        objective_title_txt.setText("Objective :");
-        que_title_txt.setText(Html.fromHtml("Assessment\nQuestion :"));
+        chapter_title_txt.setText("Chapter Name");
+        objective_title_txt.setText("Objective");
+        que_title_txt.setText(Html.fromHtml("Assessment\nQuestion"));
 
         FontStyle = "";
         splitFont1 = "";

@@ -43,7 +43,7 @@ public class ImprestFragment extends Fragment {
     private Spinner spinYear;
     private TableRow tblRowBalance, tblRowOpeningBalance;
     private ListView listImprestData;
-//    private LinearLayout llListTitle;
+    //    private LinearLayout llListTitle;
     private Context mContext;
     private GetTermAsyncTask getTermAsyncTask = null;
     private GetImprestDataAsyncTask getImprestDataAsyncTask = null;
@@ -85,7 +85,7 @@ public class ImprestFragment extends Fragment {
         spinYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               getImprestData();
+                getImprestData();
             }
 
             @Override
@@ -113,77 +113,84 @@ public class ImprestFragment extends Fragment {
         });
     }
 
-    public void fillspinYear(){
-            progressDialog = new ProgressDialog(mContext);
-            progressDialog.setMessage("Please Wait...");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
+    public void fillspinYear() {
+        progressDialog = new ProgressDialog(mContext);
+        progressDialog.setMessage("Please Wait...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        HashMap<String, String> params = new HashMap<String, String>();
-                        getTermAsyncTask = new GetTermAsyncTask(params);
-                        termModels = getTermAsyncTask.execute().get();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    HashMap<String, String> params = new HashMap<String, String>();
+                    getTermAsyncTask = new GetTermAsyncTask(params);
+                    termModels = getTermAsyncTask.execute().get();
 
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                progressDialog.dismiss();
-                                if (termModels.size() > 0) {
-                                    ArrayList<String> termText = new ArrayList<String>();
-                                    for (int i = 0; i < termModels.size(); i++) {
-                                        termText.add(termModels.get(i).getTerm());
-                                    }
-                                    final Calendar calendar = Calendar.getInstance();
-                                    int yy = calendar.get(Calendar.YEAR);
-                                    int mm = calendar.get(Calendar.MONTH) + 1;
-                                    int dd = calendar.get(Calendar.DAY_OF_MONTH);
-
-                                    System.out.print("year:"+yy);
-                                    String year;
-                                    year= String.valueOf(yy);
-                                    Collections.sort(termText);
-                                    System.out.println("Sorted ArrayList in Java - Ascending order : " + termText);
-                                    try {
-                                        Field popup = Spinner.class.getDeclaredField("mPopup");
-                                        popup.setAccessible(true);
-
-                                        // Get private mPopup member variable and try cast to ListPopupWindow
-                                        android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinYear);
-
-                                        popupWindow.setHeight(termText.size() > 5 ? 500 : termText.size() * 100);
-                                    } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
-                                        // silently fail...
-                                    }
-                                    ArrayAdapter<String> adapterSpinYear = new ArrayAdapter<String>(mContext,R.layout.spinner_layout, termText);
-                                    spinYear.setAdapter(adapterSpinYear);
-                                    for (int m = 0; m < termText.size(); m++) {
-                                        String []str=termText.get(m).split("\\-");
-                                        if (year.equalsIgnoreCase(str[0])) {
-                                            Log.d("yearValue", termText.get(m));
-                                            int index = m;
-                                            Log.d("indexOf", String.valueOf(index));
-                                            spinYear.setSelection(index);
-
-                                        }
-                                    }
-                                } else {
-                                    progressDialog.dismiss();
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialog.dismiss();
+                            if (termModels.size() > 0) {
+                                ArrayList<String> termText = new ArrayList<String>();
+                                for (int i = 0; i < termModels.size(); i++) {
+                                    termText.add(termModels.get(i).getTerm());
                                 }
+                                final Calendar calendar = Calendar.getInstance();
+                                int yy = calendar.get(Calendar.YEAR);
+                                int mm = calendar.get(Calendar.MONTH) + 1;
+                                int dd = calendar.get(Calendar.DAY_OF_MONTH);
+                                int yy1 =calendar.get(Calendar.YEAR)-1;
+
+                                        System.out.print("year:" + yy);
+                                String year, yearnotmatch;
+                                year = String.valueOf(yy);
+                                yearnotmatch=String.valueOf(yy1);
+                                Collections.sort(termText);
+                                System.out.println("Sorted ArrayList in Java - Ascending order : " + termText);
+                                try {
+                                    Field popup = Spinner.class.getDeclaredField("mPopup");
+                                    popup.setAccessible(true);
+
+                                    // Get private mPopup member variable and try cast to ListPopupWindow
+                                    android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinYear);
+
+                                    popupWindow.setHeight(termText.size() > 5 ? 500 : termText.size() * 100);
+                                } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+                                    // silently fail...
+                                }
+                                ArrayAdapter<String> adapterSpinYear = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, termText);
+                                spinYear.setAdapter(adapterSpinYear);
+                                for (int m = 0; m < termText.size(); m++) {
+                                    String[] str = termText.get(m).split("\\-");
+                                    if (year.equalsIgnoreCase(str[0])) {
+                                        Log.d("yearValue", termText.get(m));
+                                        int index = m;
+                                        Log.d("indexOf", String.valueOf(index));
+                                        spinYear.setSelection(index);
+
+                                    } else if(yearnotmatch.equalsIgnoreCase(str[0])) {
+                                        Log.d("yearValue", termText.get(m));
+                                        int index = m;
+                                        Log.d("indexOf", String.valueOf(index));
+                                        spinYear.setSelection(index);
+                                    }
+                                }
+                            } else {
+                                progressDialog.dismiss();
                             }
-                        });
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            }).start();
+            }
+        }).start();
 
     }
 
-    public void getImprestData(){
-        if(Utility.isNetworkConnected(mContext)) {
+    public void getImprestData() {
+        if (Utility.isNetworkConnected(mContext)) {
             progressDialog = new ProgressDialog(mContext);
             progressDialog.setMessage("Please Wait...");
             progressDialog.setCancelable(false);
@@ -239,8 +246,8 @@ public class ImprestFragment extends Fragment {
                     }
                 }
             }).start();
-        }else{
-            Utility.ping(mContext,"Network not available");
+        } else {
+            Utility.ping(mContext, "Network not available");
         }
     }
 }

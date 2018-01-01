@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
-        android:background="@drawable/back_line"
+
         android:orientation="vertical">
 
         <LinearLayout
@@ -28,8 +28,7 @@
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight=".2"
-                android:scaleType="fitXY"
-                android:src="@drawable/blue_bulletpoint_withline" />
+                android:scaleType="fitXY"/>
 
             <TextView
                 android:id="@+id/receipe_no_txt"

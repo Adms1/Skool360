@@ -212,30 +212,33 @@ public class HomeFragment extends Fragment {
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
-                            .addToBackStack("AttendanceFragment")
                             .replace(R.id.frame_container, fragment)
+                            .addToBackStack("AttendanceFragment")
                             .commit();
                 } else if (position == 1) {
                     fragment = new HomeworkFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
-                            .addToBackStack("HomeworkFragment")
                             .replace(R.id.frame_container, fragment)
+                            .addToBackStack("HomeworkFragment")
                             .commit();
                 } else if (position == 2) {
                     fragment = new TimeTableFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
-                            .addToBackStack("TImeTableFragment")
-                            .replace(R.id.frame_container, fragment).commit();
+                            .replace(R.id.frame_container, fragment)
+                            .addToBackStack("TimeTableFragment")
+                            .commit();
                 } else if (position == 3) {
                     fragment = new UnitTestFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
-                            .replace(R.id.frame_container, fragment).commit();
+                            .replace(R.id.frame_container, fragment)
+                            .addToBackStack("UnitTestFragment")
+                            .commit();
                 } else if (position == 4) {
                     fragment = new ResultFragment();
                     fragmentManager = getFragmentManager();
