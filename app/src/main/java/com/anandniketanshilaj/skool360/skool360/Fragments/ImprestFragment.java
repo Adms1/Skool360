@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TableRow;
@@ -24,6 +25,8 @@ import com.anandniketanshilaj.skool360.skool360.Adapter.ImprestListAdapter;
 import com.anandniketanshilaj.skool360.skool360.AsyncTasks.GetImprestDataAsyncTask;
 import com.anandniketanshilaj.skool360.skool360.AsyncTasks.GetTermAsyncTask;
 import com.anandniketanshilaj.skool360.skool360.Models.ImprestDataModel;
+import com.anandniketanshilaj.skool360.skool360.Models.ImprestResponse.Datum;
+import com.anandniketanshilaj.skool360.skool360.Models.ImprestResponse.GetImprestDataModel;
 import com.anandniketanshilaj.skool360.skool360.Models.TermModel;
 import com.anandniketanshilaj.skool360.skool360.Utility.Utility;
 
@@ -32,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Harsh on 04-Aug-16.
@@ -42,16 +46,18 @@ public class ImprestFragment extends Fragment {
     private TextView txtMyBalance, txtOpeningBalaceTop, txtNoRecordsImprest;
     private Spinner spinYear;
     private TableRow tblRowBalance, tblRowOpeningBalance;
-    private ListView listImprestData;
+    private ExpandableListView listImprestData;
     //    private LinearLayout llListTitle;
     private Context mContext;
     private GetTermAsyncTask getTermAsyncTask = null;
     private GetImprestDataAsyncTask getImprestDataAsyncTask = null;
     private ArrayList<TermModel> termModels = new ArrayList<>();
-    private ArrayList<ImprestDataModel> imprestModels = new ArrayList<>();
+    GetImprestDataModel getImprestResponse;
     private ImprestListAdapter imprestListAdapter = null;
     private ProgressDialog progressDialog = null;
-
+    List<String> listDataHeader;
+    HashMap<String, ArrayList<Datum>> listDataChild;
+    private int lastExpandedPosition = -1;
     public ImprestFragment() {
     }
 
@@ -77,7 +83,7 @@ public class ImprestFragment extends Fragment {
         txtMyBalance = (TextView) rootView.findViewById(R.id.txtMyBalance);
         txtOpeningBalaceTop = (TextView) rootView.findViewById(R.id.txtOpeningBalaceTop);
         txtNoRecordsImprest = (TextView) rootView.findViewById(R.id.txtNoRecordsImprest);
-        listImprestData = (ListView) rootView.findViewById(R.id.listImprestData);
+        listImprestData = (ExpandableListView) rootView.findViewById(R.id.listImprestData);
 //        llListTitle = (LinearLayout) rootView.findViewById(R.id.llListTitle);
     }
 
@@ -208,26 +214,25 @@ public class ImprestFragment extends Fragment {
                                 id = termModels.get(i).getTermId();
                             }
                         }
-
                         params.put("Term", id);
                         params.put("StudentID", Utility.getPref(mContext, "studid"));
                         getImprestDataAsyncTask = new GetImprestDataAsyncTask(params);
-                        imprestModels = getImprestDataAsyncTask.execute().get();
+                        getImprestResponse = getImprestDataAsyncTask.execute().get();
 
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 progressDialog.dismiss();
-                                if (imprestModels.size() > 0) {
+                                if (getImprestResponse.getFinalArray().size() > 0) {
                                     txtNoRecordsImprest.setVisibility(View.GONE);
                                     tblRowBalance.setVisibility(View.VISIBLE);
                                     tblRowOpeningBalance.setVisibility(View.VISIBLE);
-                                    txtMyBalance.setText(imprestModels.get(0).getMyBalance());
-                                    txtOpeningBalaceTop.setText(imprestModels.get(0).getOpeningBalanceTop());
-//                                llListTitle.setVisibility(View.VISIBLE);
+                                    txtMyBalance.setText(getImprestResponse.getMyBalance());
+                                    txtOpeningBalaceTop.setText(getImprestResponse.getOpeningBalance());
                                     listImprestData.setVisibility(View.VISIBLE);
-                                    if (imprestModels.size() > 0 && imprestModels.get(0).getBalance() != null) {
-                                        imprestListAdapter = new ImprestListAdapter(mContext, imprestModels);
+                                    if (getImprestResponse.getFinalArray().size() > 0 && getImprestResponse.getMyBalance() != null) {
+                                        prepaareList();
+                                        imprestListAdapter = new ImprestListAdapter(mContext, listDataHeader, listDataChild);
                                         listImprestData.setAdapter(imprestListAdapter);
                                     }
                                 } else {
@@ -236,7 +241,6 @@ public class ImprestFragment extends Fragment {
                                     tblRowOpeningBalance.setVisibility(View.GONE);
                                     txtNoRecordsImprest.setVisibility(View.VISIBLE);
                                     listImprestData.setVisibility(View.GONE);
-//                                llListTitle.setVisibility(View.GONE);
                                 }
 
                             }
@@ -248,6 +252,20 @@ public class ImprestFragment extends Fragment {
             }).start();
         } else {
             Utility.ping(mContext, "Network not available");
+        }
+    }
+
+    public void prepaareList() {
+        listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, ArrayList<Datum>>();
+
+        for (int i = 0; i < getImprestResponse.getFinalArray().size(); i++) {
+            listDataHeader.add(getImprestResponse.getFinalArray().get(i).getDate());
+            ArrayList<Datum> rows = new ArrayList<Datum>();
+            for (int j = 0; j < getImprestResponse.getFinalArray().get(i).getData().size(); j++) {
+                rows.add(getImprestResponse.getFinalArray().get(i).getData().get(j));
+            }
+            listDataChild.put(listDataHeader.get(i), rows);
         }
     }
 }

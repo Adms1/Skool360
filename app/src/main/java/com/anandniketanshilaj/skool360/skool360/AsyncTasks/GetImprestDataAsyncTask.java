@@ -3,15 +3,17 @@ package com.anandniketanshilaj.skool360.skool360.AsyncTasks;
 import android.os.AsyncTask;
 
 import com.anandniketanshilaj.skool360.skool360.Models.ImprestDataModel;
+import com.anandniketanshilaj.skool360.skool360.Models.ImprestResponse.GetImprestDataModel;
 import com.anandniketanshilaj.skool360.skool360.Models.TermModel;
 import com.anandniketanshilaj.skool360.skool360.Utility.AppConfiguration;
 import com.anandniketanshilaj.skool360.skool360.Utility.ParseJSON;
 import com.anandniketanshilaj.skool360.skool360.WebServicesCall.WebServicesCall;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class GetImprestDataAsyncTask extends AsyncTask<Void, Void, ArrayList<ImprestDataModel>> {
+public class GetImprestDataAsyncTask extends AsyncTask<Void, Void, GetImprestDataModel> {
     HashMap<String, String> param = new HashMap<String, String>();
 
     public GetImprestDataAsyncTask(HashMap<String, String> param) {
@@ -24,21 +26,22 @@ public class GetImprestDataAsyncTask extends AsyncTask<Void, Void, ArrayList<Imp
     }
 
     @Override
-    protected ArrayList<ImprestDataModel> doInBackground(Void... params) {
+    protected GetImprestDataModel doInBackground(Void... params) {
         String responseString = null;
-        ArrayList<ImprestDataModel> result = null;
+        GetImprestDataModel getImprestDataModel = null;
         try {
             responseString = WebServicesCall.RunScript(AppConfiguration.getUrl(AppConfiguration.GetImprest), param);
-            result = ParseJSON.getImprestData(responseString);
+            Gson gson = new Gson();
+            getImprestDataModel = gson.fromJson(responseString, GetImprestDataModel.class);
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
         }
-        return result;
+        return getImprestDataModel;
     }
 
     @Override
-    protected void onPostExecute(ArrayList<ImprestDataModel> result) {
+    protected void onPostExecute(GetImprestDataModel result) {
         super.onPostExecute(result);
     }
 }
