@@ -121,54 +121,52 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
             lblobjective.setText(Html.fromHtml(childData.get(childPosition).getObjective().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim()));
             lblque.setText(Html.fromHtml(childData.get(childPosition).getAssessmentQue().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim()));
         }
+
+        if (childData.get(childPosition).getVisible()) {
+            homework_linear.setVisibility(View.VISIBLE);
+            chapter_linear.setVisibility(View.VISIBLE);
+            objective_linear.setVisibility(View.VISIBLE);
+            que_linear.setVisibility(View.VISIBLE);
+        } else {
+            homework_linear.setVisibility(View.GONE);
+            chapter_linear.setVisibility(View.GONE);
+            objective_linear.setVisibility(View.GONE);
+            que_linear.setVisibility(View.GONE);
+        }
         subject_title_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (visible == true) {
-                    imageView.setBackgroundResource(R.drawable.arrow_1_42_down);
-                    homework_linear.setVisibility(View.VISIBLE);
-                    chapter_linear.setVisibility(View.VISIBLE);
-                    objective_linear.setVisibility(View.VISIBLE);
-                    que_linear.setVisibility(View.VISIBLE);
-                    visible = false;
-                } else {
-//                    imageView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42, 0);
-                    imageView.setBackgroundResource(R.drawable.arrow_1_42);
-                    homework_linear.setVisibility(View.GONE);
-                    chapter_linear.setVisibility(View.GONE);
-                    objective_linear.setVisibility(View.GONE);
-                    que_linear.setVisibility(View.GONE);
-                    visible = true;
+                for (int i = 0; i < childData.size(); i++) {
+                    if (i == childPosition) {
+                        imageView.setBackgroundResource(R.drawable.arrow_1_42_down);
+                        childData.get(childPosition).setVisible(!childData.get(childPosition).getVisible());
+                    } else {
+                        imageView.setBackgroundResource(R.drawable.arrow_1_42);
+                        childData.get(i).setVisible(false);
+                    }
                 }
+                notifyDataSetChanged();
             }
         });
         imageView.setBackgroundResource(R.drawable.arrow_1_42);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (visible == true) {
-                    imageView.setBackgroundResource(R.drawable.arrow_1_42_down);
-                    homework_linear.setVisibility(View.VISIBLE);
-                    chapter_linear.setVisibility(View.VISIBLE);
-                    objective_linear.setVisibility(View.VISIBLE);
-                    que_linear.setVisibility(View.VISIBLE);
-                    visible = false;
-                } else {
-//                    imageView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_1_42, 0);
-                    imageView.setBackgroundResource(R.drawable.arrow_1_42);
-                    homework_linear.setVisibility(View.GONE);
-                    chapter_linear.setVisibility(View.GONE);
-                    objective_linear.setVisibility(View.GONE);
-                    que_linear.setVisibility(View.GONE);
-                    visible = true;
+
+                for (int i = 0; i < childData.size(); i++) {
+                    if (i == childPosition) {
+                        imageView.setBackgroundResource(R.drawable.arrow_1_42_down);
+                        childData.get(childPosition).setVisible(!childData.get(childPosition).getVisible());
+                    } else {
+                        imageView.setBackgroundResource(R.drawable.arrow_1_42);
+                        childData.get(i).setVisible(false);
+                    }
                 }
+                notifyDataSetChanged();
+
             }
         });
         imageView.setBackgroundResource(R.drawable.arrow_1_42);
-        homework_linear.setVisibility(View.GONE);
-        chapter_linear.setVisibility(View.GONE);
-        objective_linear.setVisibility(View.GONE);
-        que_linear.setVisibility(View.GONE);
 
         return convertView;
     }

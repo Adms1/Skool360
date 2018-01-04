@@ -40,9 +40,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment {
     private View rootView;
     private Button btnMenu, btnPersonalDetail, btnEducationalDetail, btnEditProfile, btnUpdate, btnBackProfile;
-    private TextView txtName, txtDOB, txtAge, txtGender, txtBloodGroup, txtBirthPlace, txtFatherName, txtFatherPhNo, txtFatherEmail,
-            txtMotherName, txtMotherPhNo, txtMotherEmail, txtAddress, txtCity, txtTransKMs, txtTrasPickTime, txtTrasDropTime,
-            txtGRNO, txtStandard, txtClass, txtUserName, txtPassword, txtEdit, studName,txtsmsno;
+    private TextView txtName, txtDOB, txtAge, txtGender, txtBloodGroup, txtBirthPlace, txtFatherName,
+            txtFatherPhNo, txtFatherEmail,txtMotherName, txtMotherPhNo, txtMotherEmail, txtAddress,
+            txtCity,txtTrasBusNo, txtTrasRouteNo, txtTrasPickPoint, txtTrasDropPoint, txtTransKMs,
+            txtTrasPickTime, txtTrasDropTime,txtGRNO, txtStandard, txtClass, txtUserName, txtPassword,
+            txtEdit, studName,txtsmsno;
     private View viewShadow1, viewShadow2, viewShadow3;
     private CircleImageView profile_image;
     private View includePersonalDetail, includeEducationalDetail, includeEditProfileDetail;
@@ -101,6 +103,10 @@ public class ProfileFragment extends Fragment {
         txtsmsno = (TextView) includePersonalDetail.findViewById(R.id.txtsmsno);
         txtAddress = (TextView) includePersonalDetail.findViewById(R.id.txtAddress);
         txtCity = (TextView) includePersonalDetail.findViewById(R.id.txtCity);
+        txtTrasBusNo = (TextView) includePersonalDetail.findViewById(R.id.txtTrasBusNo);
+        txtTrasRouteNo = (TextView) includePersonalDetail.findViewById(R.id.txtTrasRouteNo);
+        txtTrasPickPoint = (TextView) includePersonalDetail.findViewById(R.id.txtTrasPickPoint);
+        txtTrasDropPoint = (TextView) includePersonalDetail.findViewById(R.id.txtTrasDropPoint);
         txtTransKMs = (TextView) includePersonalDetail.findViewById(R.id.txtTransKMs);
         txtTrasPickTime = (TextView) includePersonalDetail.findViewById(R.id.txtTrasPickTime);
         txtTrasDropTime = (TextView) includePersonalDetail.findViewById(R.id.txtTrasDropTime);
@@ -306,6 +312,10 @@ public class ProfileFragment extends Fragment {
                                 txtTransKMs.setText(studDetailList.get(0).getTransport_KM());
                                 txtTrasPickTime.setText(studDetailList.get(0).getTransport_PicupTime());
                                 txtTrasDropTime.setText(studDetailList.get(0).getTransport_DropTime());
+                                txtTrasBusNo.setText(studDetailList.get(0).getBusNo());
+                                txtTrasRouteNo.setText(studDetailList.get(0).getRouteName());
+                                txtTrasPickPoint.setText(studDetailList.get(0).getPickupPointName());
+                                txtTrasDropPoint.setText(studDetailList.get(0).getDropPointName());
                                 txtGRNO.setText(studDetailList.get(0).getGRNO());
                                 txtStandard.setText(studDetailList.get(0).getStandard());
                                 txtClass.setText(studDetailList.get(0).getStudClass());

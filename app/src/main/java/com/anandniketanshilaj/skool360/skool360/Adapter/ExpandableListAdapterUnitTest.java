@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.anandniketanshilaj.skool360.R;
+import com.anandniketanshilaj.skool360.skool360.Models.Data;
 import com.anandniketanshilaj.skool360.skool360.Models.UnitTestModel;
 
 import java.util.ArrayList;
@@ -30,19 +31,19 @@ public class ExpandableListAdapterUnitTest extends BaseExpandableListAdapter {
     boolean visible = true;
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
-    private HashMap<String, ArrayList<UnitTestModel.Data>> _listDataChild;
-
+    private HashMap<String, ArrayList<Data>> _listDataChild;
+    private HashMap<Integer, Integer> visibleArray = new HashMap<Integer, Integer>();
 
     public ExpandableListAdapterUnitTest(Context context, List<String> listDataHeader,
-                                         HashMap<String, ArrayList<UnitTestModel.Data>> listChildData) {
+                                         HashMap<String, ArrayList<Data>> listChildData) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
     }
 
     @Override
-    public ArrayList<UnitTestModel.Data> getChild(int groupPosition, int childPosititon) {
-        return this._listDataChild.get(this._listDataHeader.get(groupPosition));
+    public ArrayList<Data> getChild(int groupPosition, int childPosititon) {
+        return _listDataChild.get(_listDataHeader.get(groupPosition));
     }
 
     @Override
@@ -51,64 +52,59 @@ public class ExpandableListAdapterUnitTest extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, final int childPosition,
-                             boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getChildView(final int groupPosition, final int childPosition,
+                             boolean isLastChild, View convertView, final ViewGroup parent) {
 
-        final ArrayList<UnitTestModel.Data> childData = getChild(groupPosition, 0);
+        final ArrayList<Data> childData = getChild(groupPosition, childPosition);
         final LinearLayout syllabus_linear;
         final TextView subject_name_txt, syllabus_txt;
 
         if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater infalInflater = LayoutInflater.from(_context);
             convertView = infalInflater.inflate(R.layout.list_item_unit_test, null);
         }
 
         subject_name_txt = (TextView) convertView.findViewById(R.id.subject_name_txt);
         syllabus_txt = (TextView) convertView.findViewById(R.id.syllabus_txt);
         syllabus_linear = (LinearLayout) convertView.findViewById(R.id.syllabus_linear);
-
         subject_name_txt.setText(childData.get(childPosition).getSubject());
+
         String[] data = childData.get(childPosition).getDetail().split("\\|");
-
         List<String> stringList = new ArrayList<String>(Arrays.asList(data));
-
 
         if (syllabus_linear.getChildCount() > 0) {
             syllabus_linear.removeAllViews();
         }
         final TextView[] myTextViews = new TextView[stringList.size()];
         for (int i = 0; i < stringList.size(); i++) {
-
             final TextView rowTextView = new TextView(_context);
-//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//            params.setMargins(0,10,0,0);
-//            rowTextView.setLayoutParams(params);
             rowTextView.setBackgroundResource(R.drawable.list_line_textbox);
             rowTextView.setTextSize(12);
-            rowTextView.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER);
-
-
+            rowTextView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER);
             rowTextView.setText(stringList.get(i));
-            // add the textview to the linearlayout
             syllabus_linear.addView(rowTextView);
-            // save a reference to the textview for later
             myTextViews[i] = rowTextView;
-
+        }
+        if (childData.get(childPosition).getVisible()) {
+            syllabus_linear.setVisibility(View.VISIBLE);
+        } else {
+            syllabus_linear.setVisibility(View.GONE);
         }
 
         syllabus_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (visible == true) {
-                    syllabus_linear.setVisibility(View.VISIBLE);
-                    visible = false;
-                } else {
-                    syllabus_linear.setVisibility(View.GONE);
-                    visible = true;
+                for (int i = 0; i < childData.size(); i++) {
+                    if (i == childPosition) {
+                        childData.get(childPosition).setVisible(!childData.get(childPosition).getVisible());
+                    } else {
+                        childData.get(i).setVisible(false);
+                    }
                 }
+                notifyDataSetChanged();
             }
         });
-        syllabus_linear.setVisibility(View.GONE);
+
         return convertView;
     }
 
@@ -142,16 +138,16 @@ public class ExpandableListAdapterUnitTest extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.list_group_timetable, null);
         }
 
-        if(isExpanded){
+        if (isExpanded) {
             convertView.setBackgroundResource(R.color.orange);
-        }else{
+        } else {
             convertView.setBackgroundResource(R.color.gray);
         }
-
 
         TextView lblListHeader = (TextView) convertView.findViewById(R.id.lblListHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
+
 
         return convertView;
     }

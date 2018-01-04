@@ -27,6 +27,8 @@ public class HomeWorkInfo {
     @Expose
     private String font;
 
+    private Boolean isVisible = false;
+
     public String getSubject() {
         return subject;
     }
@@ -75,4 +77,11 @@ public class HomeWorkInfo {
         this.font = font;
     }
 
+    public Boolean getVisible() {
+        return isVisible;
+    }
+
+    public void setVisible(Boolean visible) {
+        isVisible = visible;
+    }
 }
