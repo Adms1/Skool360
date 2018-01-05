@@ -69,6 +69,7 @@ public class CreateFragment extends Fragment {
     ArrayList<String> Teacherfield;
     HashMap<Integer, String> spinnerMap;
     String[] spinnerteacherIdArray;
+
     public CreateFragment() {
     }
 
@@ -99,10 +100,6 @@ public class CreateFragment extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser && rootView != null) {
             getSpinnerData();
-            final Calendar calendar = Calendar.getInstance();
-            int yy = calendar.get(Calendar.YEAR);
-            int mm = calendar.get(Calendar.MONTH) + 1;
-            int dd = calendar.get(Calendar.DAY_OF_MONTH);
 
             //load today's data first
             txtDate.setText("DD/MM/YYYY");
@@ -126,7 +123,7 @@ public class CreateFragment extends Fragment {
 
                 Log.d("value", name + " " + getid);
                 requestfor = getid.toString();
-                Log.d("requestfor",requestfor);
+                Log.d("requestfor", requestfor);
             }
 
             @Override
@@ -157,49 +154,49 @@ public class CreateFragment extends Fragment {
         description = edtDescription.getText().toString();
 
         if (Utility.isNetworkConnected(mContext)) {
-            if (!requestfor.equalsIgnoreCase("") &&!Date.equalsIgnoreCase("")&&
-                    !purpose.equalsIgnoreCase("")&&!description.equalsIgnoreCase("")) {
-            progressDialog = new ProgressDialog(mContext);
-            progressDialog.setMessage("Please Wait...");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
+            if (!requestfor.equalsIgnoreCase("") && !Date.equalsIgnoreCase("") &&
+                    !purpose.equalsIgnoreCase("") && !description.equalsIgnoreCase("")) {
+                progressDialog = new ProgressDialog(mContext);
+                progressDialog.setMessage("Please Wait...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        HashMap<String, String> params = new HashMap<String, String>();
-                        params.put("MessageID", "0");
-                        params.put("FromID", Utility.getPref(mContext, "studid"));
-                        params.put("ToID", requestfor);
-                        params.put("MeetingDate", Date);
-                        params.put("SubjectLine", purpose);
-                        params.put("Description", description);
-                        params.put("Flag","Student");
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            HashMap<String, String> params = new HashMap<String, String>();
+                            params.put("MessageID", "0");
+                            params.put("FromID", Utility.getPref(mContext, "studid"));
+                            params.put("ToID", requestfor);
+                            params.put("MeetingDate", Date);
+                            params.put("SubjectLine", purpose);
+                            params.put("Description", description);
+                            params.put("Flag", "Student");
 
-                        getPTMTeacherStudentInsertDetailAsyncTask = new PTMTeacherStudentInsertDetailAsyncTask(params);
-                        mainPtmSentMessageResponse = getPTMTeacherStudentInsertDetailAsyncTask.execute().get();
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                progressDialog.dismiss();
-                                if (mainPtmSentMessageResponse.getSuccess().equalsIgnoreCase("True")) {
-                                    txtDate.setText("DD/MM/YYYY");
-                                    edtPurpose.setText("");
-                                    edtDescription.setText("");
-                                    setSelection();
-                                    Utility.ping(mContext, "Appointment Book Successfully.");
-                                } else {
+                            getPTMTeacherStudentInsertDetailAsyncTask = new PTMTeacherStudentInsertDetailAsyncTask(params);
+                            mainPtmSentMessageResponse = getPTMTeacherStudentInsertDetailAsyncTask.execute().get();
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
                                     progressDialog.dismiss();
+                                    if (mainPtmSentMessageResponse.getSuccess().equalsIgnoreCase("True")) {
+                                        txtDate.setText("DD/MM/YYYY");
+                                        edtPurpose.setText("");
+                                        edtDescription.setText("");
+                                        setSelection();
+                                        Utility.ping(mContext, "Appointment Book Successfully.");
+                                    } else {
+                                        progressDialog.dismiss();
 
+                                    }
                                 }
-                            }
-                        });
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                            });
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-            }).start();
+                }).start();
             } else {
                 Utility.ping(mContext, "Blank field not allowed.");
             }
@@ -289,6 +286,7 @@ public class CreateFragment extends Fragment {
         spinRequestFor.setAdapter(adapterYear);
         setSelection();
     }
+
     public void setSelection() {
         for (int m = 0; m < spinnerteacherIdArray.length; m++) {
             if (spinnerteacherIdArray[m].contains("(ClassTeacher)")) {
@@ -299,6 +297,7 @@ public class CreateFragment extends Fragment {
             }
         }
     }
+
     public static class SelectDateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
         @Override
@@ -307,7 +306,11 @@ public class CreateFragment extends Fragment {
             int yy = calendar.get(Calendar.YEAR);
             int mm = calendar.get(Calendar.MONTH);
             int dd = calendar.get(Calendar.DAY_OF_MONTH);
-            return new DatePickerDialog(getActivity(), this, yy, mm, dd);
+
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, yy, mm, dd);
+            dialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
+
+            return dialog;
         }
 
         public void onDateSet(DatePicker view, int yy, int mm, int dd) {
@@ -315,7 +318,18 @@ public class CreateFragment extends Fragment {
         }
 
         public void populateSetDate(int year, int month, int day) {
-            dateFinal = day + "/" + month + "/" + year;
+            String d, m, y;
+            d = Integer.toString(day);
+            m = Integer.toString(month);
+            y = Integer.toString(year);
+
+            if (day < 10) {
+                d = "0" + d;
+            }
+            if (month < 10) {
+                m = "0" + m;
+            }
+            dateFinal = d + "/" + m + "/" + y;
 
             txtDate.setText(dateFinal);
         }

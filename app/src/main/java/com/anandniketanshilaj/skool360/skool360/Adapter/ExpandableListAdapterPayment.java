@@ -80,18 +80,18 @@ public class ExpandableListAdapterPayment extends BaseExpandableListAdapter {
         llHeaderRow1_cheque = (LinearLayout) convertView.findViewById(R.id.llHeaderRow1_cheque);
         llHeaderRow1_bankname = (LinearLayout) convertView.findViewById(R.id.llHeaderRow1_bankname);
 
-        admission_fee_value_txt.setText(childData.get(childPosition).getAdmissionFee());
+        admission_fee_value_txt.setText("₹" + " " +childData.get(childPosition).getAdmissionFee());
         term_value_txt.setText(childData.get(childPosition).getTermDetail());
         receipe_no_value_txt.setText(childData.get(childPosition).getReceiptNo());
         mode_of_payment_value_txt.setText(childData.get(childPosition).getPayMode());
-        tution_fee_value_txt.setText(childData.get(childPosition).getTuitionFee());
-        transport_fee_value_txt.setText(childData.get(childPosition).getTransport());
-        imprest_value_txt.setText(childData.get(childPosition).getImprestFee());
-        late_fees_value_txt.setText(childData.get(childPosition).getLatesFee());
-        waive_off_value_txt.setText(childData.get(childPosition).getDiscountFee());
-        previous_outstanding_value_txt.setText(childData.get(childPosition).getPreviousFees());
-        total_paid_fee_value_txt.setText(childData.get(childPosition).getPaidFee());
-        current_outstanding_value_txt.setText(childData.get(childPosition).getCurrentOutstandingFees());
+        tution_fee_value_txt.setText("₹" + " " + childData.get(childPosition).getTuitionFee());
+        transport_fee_value_txt.setText("₹" + " " + childData.get(childPosition).getTransport());
+        imprest_value_txt.setText("₹" + " " + childData.get(childPosition).getImprestFee());
+        late_fees_value_txt.setText("₹" + " " + childData.get(childPosition).getLatesFee());
+        waive_off_value_txt.setText("₹" + " " + childData.get(childPosition).getDiscountFee());
+        previous_outstanding_value_txt.setText("₹" + " " + childData.get(childPosition).getPreviousFees());
+        total_paid_fee_value_txt.setText("₹" + " " + childData.get(childPosition).getPaidFee());
+        current_outstanding_value_txt.setText("₹" + " " + childData.get(childPosition).getCurrentOutstandingFees());
 
         if (childData.get(childPosition).getPayMode().equalsIgnoreCase("Cash")) {
             llHeaderRow1_cheque.setVisibility(View.GONE);

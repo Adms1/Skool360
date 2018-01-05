@@ -30,7 +30,7 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<String, ArrayList<HomeWorkInfo>> _listDataChild;
-    String FontStyle, splitFont1, splitFont2, splitFont3, splitFont4;
+    String FontStyle, splitFont1, splitFont2, splitFont3, splitFont4, compareStr;
     TextView homework_title_txt, subject_title_txt, chapter_title_txt, lblchaptername, objective_title_txt, lblobjective, que_title_txt, lblque;
     Typeface typeface;
 //    ImageView imageView;
@@ -138,11 +138,11 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
             public void onClick(View v) {
                 for (int i = 0; i < childData.size(); i++) {
                     if (i == childPosition) {
-                        imageView.setBackgroundResource(R.drawable.arrow_1_42_down);
                         childData.get(childPosition).setVisible(!childData.get(childPosition).getVisible());
+                        imageView.setBackgroundResource(R.drawable.arrow_1_42_down);
                     } else {
-                        imageView.setBackgroundResource(R.drawable.arrow_1_42);
                         childData.get(i).setVisible(false);
+                        imageView.setBackgroundResource(R.drawable.arrow_1_42);
                     }
                 }
                 notifyDataSetChanged();
@@ -155,10 +155,10 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
 
                 for (int i = 0; i < childData.size(); i++) {
                     if (i == childPosition) {
-                        imageView.setBackgroundResource(R.drawable.arrow_1_42_down);
                         childData.get(childPosition).setVisible(!childData.get(childPosition).getVisible());
+                        compareStr = String.valueOf(childData.get(childPosition).getVisible());
+
                     } else {
-                        imageView.setBackgroundResource(R.drawable.arrow_1_42);
                         childData.get(i).setVisible(false);
                     }
                 }
@@ -166,7 +166,7 @@ public class ExpandableListAdapterHomework extends BaseExpandableListAdapter {
 
             }
         });
-        imageView.setBackgroundResource(R.drawable.arrow_1_42);
+//        imageView.setBackgroundResource(R.drawable.arrow_1_42);
 
         return convertView;
     }

@@ -84,10 +84,10 @@ public class ParseJSON {
             JSONObject reader = new JSONObject(responseString);
             String data_load_basket = reader.getString("Success");
             if (data_load_basket.toString().equals("True")) {
-                   result.put("versionSatuts","True");
+                result.put("versionSatuts", "True");
             } else {
                 //invalid login
-                result.put("versionSatuts","False");
+                result.put("versionSatuts", "False");
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -132,7 +132,10 @@ public class ParseJSON {
                     studProfileModel.setTransport_KM(jsonChildNode.getString("Transport_KM"));
                     studProfileModel.setTransport_PicupTime(jsonChildNode.getString("Transport_PicupTime"));
                     studProfileModel.setTransport_DropTime(jsonChildNode.getString("Transport_DropTime"));
-
+                    studProfileModel.setRouteName(jsonChildNode.getString("Route Name"));
+                    studProfileModel.setBusNo(jsonChildNode.getString("Bus No"));
+                    studProfileModel.setPickupPointName(jsonChildNode.getString("PickupPoint Name"));
+                    studProfileModel.setDropPointName(jsonChildNode.getString("DropPoint Name"));
                     studProfileModel.setGRNO(jsonChildNode.getString("GRNO"));
                     studProfileModel.setStandard(jsonChildNode.getString("Standard"));
                     studProfileModel.setStudClass(jsonChildNode.getString("Class"));
@@ -314,7 +317,6 @@ public class ParseJSON {
         Log.d("megha", result.get(0).getDataArrayList().get(0).getImprest());
         return result;
     }
-
 
 
     public static ArrayList<FeesModel> parseFeesJson(String responseString) {
